@@ -1,101 +1,36 @@
-# Bellora
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-忙しい毎日でも、きれいはあきらめない。
+## Getting Started
 
-Belloraは、育児と仕事を両立する30代女性のための  
-「時短美容」メディア＆自動運用プラットフォームです。
+First, run the development server:
 
----
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## 🌿 Vision
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-時間がない毎日でも、自分らしく整う。
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Belloraは、
-育児 × 仕事 × 美容 のリアルな悩みに寄り添い、
-“無理しないきれい” を届けることを目指します。
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 💡 Concept
+To learn more about Next.js, take a look at the following resources:
 
-- 時短でも効果的
-- 続けられる美容
-- 過度に煽らない
-- 本当に役立つものだけ紹介する
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🛠 Tech Stack
+## Deploy on Vercel
 
-- **Frontend**: Next.js (Vercel)
-- **Backend**: Next.js API Routes
-- **Hosting**: Vercel
-- **DNS**: Cloudflare
-- **Automation**: GitHub Actions
-- **Database**: (TBD: Supabase予定)
-- **Messaging**: LINE Messaging API
-- **Social**: X API
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-## 📦 Project Structure (Planned)
-
-/
-├─ app/ (LP)
-├─ admin/ (管理画面)
-├─ api/
-│ ├─ line/webhook
-│ ├─ jobs/generate
-│ ├─ jobs/post
-│ └─ go/[slug]
-└─ lib/
-
-
----
-
-## 🔁 Automation Flow
-
-1. AIが投稿候補を生成
-2. LINEで承認（OK / NG）
-3. GitHub Actionsで予約投稿
-4. データ収集・改善
-
----
-
-## 🎯 Phase Roadmap
-
-### Phase 1
-- LP公開
-- LINE承認フロー
-- 予約投稿自動化
-
-### Phase 2
-- 投稿分析ダッシュボード
-- テンプレ改善ロジック
-- 自動学習機能
-
-### Phase 3
-- コンテンツ拡張
-- ブログ展開
-- ブランド強化
-
----
-
-## 📌 Disclaimer
-
-本プロジェクトは個人運営のメディアです。
-掲載内容にはPRを含む場合があります。
-
----
-
-## ❤️ Brand Story
-
-Belloraは、
-“Bell（鈴）” のやわらかな響きと、
-日常に小さな輝きを届ける想いから生まれました。
-
-忙しい毎日でも、
-少しだけ心が軽くなる存在でありたい。
-
----
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

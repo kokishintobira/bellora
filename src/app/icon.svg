@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="149 114 100 170">
+  <defs>
+    <style>
+      .accent { fill: #D4C9B8; }
+      .primary { fill: none; stroke: #8F978F; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <g transform="translate(190, 170)">
+    <!-- Elegant Monogram B -->
+    <path d="M-20, -50 C20,-50 40,-30 40,-10 C40,5 30,15 10,15 C35,15 50,35 50,60 C50,90 20,105 -20,105 L-20,-50 Z" class="primary" />
+
+    <!-- Sparkle Accent -->
+    <path d="M10, -25 C15,-25 20,-30 20,-35 C20,-30 25,-25 30,-25 C25,-25 20,-20 20,-15 C20,-20 15,-25 10,-25 Z" class="accent"/>
+
+    <!-- Balance Line -->
+    <line x1="-20" y1="15" x2="-35" y2="15" class="primary" />
+  </g>
+</svg>

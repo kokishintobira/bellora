@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #FDFCFB; }
+      .bell { fill: none; stroke: #7B8476; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .leaf { fill: #C9C2B3; }
+      .brand { font-family: 'Playfair Display', 'Didot', Georgia, serif; font-size: 32px; letter-spacing: 0.25em; fill: #4A4845; }
+      .tagline { font-family: 'Inter', 'Helvetica Neue', sans-serif; font-size: 10px; letter-spacing: 0.4em; fill: #9E9A95; }
+    </style>
+  </defs>
+
+  <rect width="400" height="400" class="bg" />
+
+  <g transform="translate(0, -20)">
+    <!-- Delicate Bell Outline -->
+    <path class="bell" d="M200 130 C180 130 165 150 165 175 L155 230 C152 245 140 255 140 255 L260 255 C260 255 248 245 245 230 L235 175 C235 150 220 130 200 130 Z" />
+    <path class="bell" d="M200 130 V118" /> <!-- Top handle loop -->
+    <circle cx="200" cy="115" r="4" class="bell" />
+
+    <!-- Clapper / Drop -->
+    <circle cx="200" cy="245" r="5" fill="#7B8476" />
+
+    <!-- Organic Element (Leaf/Sparkle blending with the bell) -->
+    <path class="leaf" d="M225 140 C240 125 260 125 260 125 C260 125 260 145 245 160 C230 175 225 140 225 140 Z" />
+  </g>
+
+  <!-- Typography -->
+  <text x="204" y="320" class="brand" text-anchor="middle">BELLORA</text>
+  <text x="202" y="345" class="tagline" text-anchor="middle">RELAX &amp; CARE</text>
+</svg>
