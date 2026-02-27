@@ -1,320 +1,301 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 
-/* ───── data ───── */
+export const metadata: Metadata = {
+  title: "Bellora | 文系未経験からIT転職を目指すリアル体験ブログ",
+  description:
+    "文系未経験→SES→自社サービス。転職失敗も経験済み。子育てしながら資格勉強も進行中。失敗込みのリアル体験をすべて公開。",
+};
 
-const categories = [
-  {
-    slug: "morning",
-    title: "朝1分ケア",
-    description: "洗顔〜保湿まで、1分で完了するアイテム",
-    emoji: "🌅",
-  },
-  {
-    slug: "bath",
-    title: "お風呂上がり",
-    description: "入浴後のスキンケアを最短で仕上げる",
-    emoji: "🛁",
-  },
-  {
-    slug: "makeup",
-    title: "メイク時短",
-    description: "ベースからポイントまで、5分で完成",
-    emoji: "💄",
-  },
-];
+/* ─── data ─── */
 
-const picks = [
-  {
-    category: "morning",
-    items: [
-      {
-        name: "オールインワンジェル",
-        description: "化粧水・乳液・美容液がこれ1つ。洗顔後ワンステップで完了。",
-        slug: "allinone-gel",
-      },
-      {
-        name: "拭き取り化粧水シート",
-        description: "朝の洗顔代わりに。拭くだけで角質ケア＋保湿。",
-        slug: "wiping-lotion",
-      },
-      {
-        name: "UVカット乳液",
-        description: "保湿と日焼け止めを同時に。下地いらずで時短。",
-        slug: "uv-milk",
-      },
-    ],
-  },
-  {
-    category: "bath",
-    items: [
-      {
-        name: "インバストリートメント",
-        description: "お風呂の中で塗って流すだけ。ドライヤー時間も短縮。",
-        slug: "in-bath-treatment",
-      },
-      {
-        name: "ボディミルク(濡れ肌用)",
-        description: "タオルドライ前に塗れる。お風呂場で保湿完了。",
-        slug: "wet-body-milk",
-      },
-    ],
-  },
-  {
-    category: "makeup",
-    items: [
-      {
-        name: "クッションファンデ",
-        description: "パフでポンポン塗るだけ。カバー力＋ツヤ感を30秒で。",
-        slug: "cushion-foundation",
-      },
-      {
-        name: "マルチカラースティック",
-        description: "リップ・チーク・アイシャドウ兼用。ポーチもスッキリ。",
-        slug: "multi-stick",
-      },
-      {
-        name: "お湯落ちマスカラ",
-        description: "クレンジング不要。お湯で落とせるからオフも時短。",
-        slug: "oyu-mascara",
-      },
-    ],
-  },
-];
+const NAV_LINKS = [
+  { label: "はじめに", href: "#start" },
+  { label: "カテゴリ", href: "#categories" },
+  { label: "ツール", href: "#tools" },
+  { label: "About", href: "#about" },
+] as const;
 
-const faqs = [
+const START_CARDS = [
   {
-    q: "本当に時短で効果はありますか？",
-    a: "はい。各アイテムは口コミ評価と成分を基に厳選しています。時短でも品質に妥協しない製品だけをご紹介しています。",
+    emoji: "🗺️",
+    title: "未経験→IT転職ロードマップ",
+    description: "文系未経験から内定を取るまでの全ステップをまとめました。",
+    href: "/posts/roadmap",
   },
   {
-    q: "敏感肌でも使えるものはありますか？",
-    a: "各アイテムの詳細ページで成分情報を確認できます。敏感肌向けの製品も積極的にピックアップしています。",
+    emoji: "🏢",
+    title: "SESのリアル",
+    description: "SES企業で働いて分かった、良い面・悪い面を正直に書きます。",
+    href: "/posts/ses-reality",
   },
   {
-    q: "掲載アイテムはどう選んでいますか？",
-    a: "編集部が実際の口コミ・成分・コスパを総合的に評価し、忙しい方に本当におすすめできるものだけを掲載しています。",
+    emoji: "💡",
+    title: "転職失敗から学んだこと",
+    description: "失敗経験があるからこそ伝えられる、避けるべきポイント。",
+    href: "/posts/failure-lessons",
   },
-  {
-    q: "リンク先で購入できますか？",
-    a: "はい。各アイテムのリンクから大手ECサイト等で購入可能です。※当サイトはアフィリエイトプログラムに参加しています。",
-  },
-  {
-    q: "男性でも参考になりますか？",
-    a: "もちろんです。時短スキンケアは性別を問わず役立ちます。特にオールインワン系は男性にも人気です。",
-  },
-];
+] as const;
 
-/* ───── page ───── */
+const CATEGORIES = [
+  {
+    emoji: "📝",
+    title: "転職ノウハウ",
+    description: "職務経歴書・面接対策・求人の選び方",
+    href: "/posts?cat=job-change",
+  },
+  {
+    emoji: "💻",
+    title: "プログラミング学習",
+    description: "未経験から始めるプログラミング勉強法",
+    href: "/posts?cat=programming",
+  },
+  {
+    emoji: "📖",
+    title: "資格勉強",
+    description: "基本情報技術者試験を子育てしながら攻略",
+    href: "/posts?cat=certification",
+  },
+  {
+    emoji: "🏠",
+    title: "働き方・SES体験",
+    description: "SES / 自社開発 / リモートワークのリアル",
+    href: "/posts?cat=workstyle",
+  },
+  {
+    emoji: "👶",
+    title: "子育て×キャリア",
+    description: "育児と勉強・転職活動を両立するコツ",
+    href: "/posts?cat=parenting",
+  },
+] as const;
+
+const TOOLS = [
+  {
+    emoji: "🎓",
+    title: "プログラミングスクール比較",
+    description: "未経験向けスクールを受講者目線で比較しました。",
+    href: "/posts/programming-schools",
+  },
+  {
+    emoji: "📄",
+    title: "転職エージェント比較",
+    description: "IT未経験OKのエージェントを実体験ベースで紹介。",
+    href: "/posts/agents-comparison",
+  },
+  {
+    emoji: "📚",
+    title: "おすすめ学習教材",
+    description: "独学で使って良かった本・サービスをまとめました。",
+    href: "/posts/learning-resources",
+  },
+] as const;
+
+/* ─── components ─── */
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* ── Header ── */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-5">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/logo-monogram-icon.svg"
-              alt="Bellora"
-              width={28}
-              height={28}
-              className="rounded"
-            />
-            <span className="text-lg font-bold tracking-wide text-primary-dark">
-              Bellora
-            </span>
+      {/* ───── Header ───── */}
+      <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+          <Link href="/" className="text-lg font-bold tracking-tight">
+            Bellora
           </Link>
-          <span className="text-xs text-accent">時短美容セレクション</span>
+          <nav className="hidden gap-6 text-sm sm:flex">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-foreground-muted transition hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          {/* Mobile menu button */}
+          <a
+            href="#start"
+            className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white transition hover:bg-primary-dark sm:hidden"
+          >
+            はじめに
+          </a>
         </div>
       </header>
 
-      {/* ── Hero ── */}
-      <section className="flex flex-col items-center px-5 pb-16 pt-20 text-center">
-        <Image
-          src="/logo-primary-icon.svg"
-          alt="Bellora"
-          width={72}
-          height={72}
-          className="mb-6 rounded-2xl"
-          priority
-        />
-        <h1 className="text-3xl font-bold leading-snug tracking-tight sm:text-4xl">
-          忙しい毎日でも、
-          <br />
-          きれいは続く。
-        </h1>
-        <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70">
-          育児も仕事もがんばる30代女性のための
-          <br className="sm:hidden" />
-          時短美容セレクション
+      {/* ───── Hero ───── */}
+      <section className="px-4 pb-16 pt-20 text-center sm:pt-28">
+        <p className="mx-auto mb-4 inline-block rounded-full border border-border bg-surface px-4 py-1 text-sm text-foreground-muted">
+          文系未経験 → SES → 自社サービス
         </p>
-        <a
-          href="#categories"
-          className="mt-8 inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition hover:bg-primary-dark"
-        >
-          おすすめを見る
-        </a>
-      </section>
-
-      {/* ── Problem / Solution ── */}
-      <section className="bg-muted px-5 py-16">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-center text-xl font-bold">
-            こんなお悩みありませんか？
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              "朝はバタバタ、スキンケアは化粧水だけ…",
-              "子どもを寝かしつけたら自分の時間はゼロ",
-              "色々買っても結局使いきれない",
-              "何がいいかリサーチする時間すらない",
-            ].map((text) => (
-              <div
-                key={text}
-                className="flex items-start gap-3 rounded-xl bg-background p-4"
-              >
-                <span className="mt-0.5 text-primary">&#10003;</span>
-                <p className="text-sm leading-relaxed">{text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 rounded-2xl border border-primary/20 bg-background p-6 text-center">
-            <p className="text-lg font-bold text-primary-dark">
-              Bellora が「本当に使えるもの」だけを厳選。
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-              口コミ・成分・コスパを編集部が総合評価。
-              <br />
-              忙しいあなたの代わりにリサーチします。
-            </p>
-          </div>
+        <h1 className="mx-auto max-w-2xl text-3xl font-bold leading-snug tracking-tight sm:text-5xl sm:leading-tight">
+          失敗込みのリアル体験を、
+          <br />
+          <span className="text-primary">全部書きます。</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-foreground-muted sm:text-lg">
+          文系未経験からIT転職を目指す人のためのブログです。
+          <br className="hidden sm:block" />
+          転職失敗も、SESの現実も、子育てしながらの資格勉強も。
+          <br className="hidden sm:block" />
+          きれいごとじゃない「リアル」を発信しています。
+        </p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <Link
+            href="/posts"
+            className="w-full rounded-lg bg-primary px-6 py-3 text-center font-medium text-white transition hover:bg-primary-dark sm:w-auto"
+          >
+            記事一覧を見る
+          </Link>
+          <a
+            href="#start"
+            className="w-full rounded-lg border border-border bg-surface px-6 py-3 text-center font-medium transition hover:border-primary/50 sm:w-auto"
+          >
+            はじめての方へ
+          </a>
         </div>
       </section>
 
-      {/* ── Categories ── */}
-      <section id="categories" className="px-5 py-16">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-center text-xl font-bold">
-            3つのシーンから選ぶ
+      {/* ───── Start Here ───── */}
+      <section id="start" className="bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">
+            まずはここから読んでください
           </h2>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {categories.map((cat) => (
-              <a
-                key={cat.slug}
-                href={`#${cat.slug}`}
-                className="rounded-2xl border border-border bg-background p-6 text-center transition hover:border-primary/40 hover:shadow-sm"
+          <p className="mx-auto mt-3 max-w-lg text-center text-foreground-muted">
+            IT転職を考えはじめたら、この3つの記事からどうぞ。
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {START_CARDS.map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="rounded-xl border border-border bg-surface p-6 transition hover:border-primary/50 hover:shadow-sm"
               >
-                <span className="text-3xl">{cat.emoji}</span>
-                <h3 className="mt-3 text-base font-bold">{cat.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-foreground/60">
-                  {cat.description}
+                <span className="text-3xl">{card.emoji}</span>
+                <h3 className="mt-3 font-bold">{card.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
+                  {card.description}
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Picks ── */}
-      <section className="bg-muted px-5 py-16">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-10 text-center text-xl font-bold">
-            編集部おすすめアイテム
+      {/* ───── Categories ───── */}
+      <section id="categories" className="px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">
+            カテゴリから探す
           </h2>
-          {picks.map((group) => {
-            const cat = categories.find((c) => c.slug === group.category)!;
-            return (
-              <div key={group.category} id={group.category} className="mb-12 last:mb-0">
-                <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-primary-dark">
-                  <span>{cat.emoji}</span>
-                  {cat.title}
-                </h3>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.slug}
-                      className="flex flex-col justify-between rounded-2xl border border-border bg-background p-5"
-                    >
-                      <div>
-                        <h4 className="text-sm font-bold">{item.name}</h4>
-                        <p className="mt-2 text-xs leading-relaxed text-foreground/60">
-                          {item.description}
-                        </p>
-                      </div>
-                      <Link
-                        href={`/go/${item.slug}`}
-                        className="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-medium text-white transition hover:bg-primary-dark"
-                      >
-                        詳しく見る
-                      </Link>
-                    </div>
-                  ))}
+          <p className="mx-auto mt-3 max-w-lg text-center text-foreground-muted">
+            気になるテーマから記事を探せます。
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.title}
+                href={cat.href}
+                className="flex items-start gap-4 rounded-xl border border-border bg-surface p-5 transition hover:border-primary/50"
+              >
+                <span className="shrink-0 text-2xl">{cat.emoji}</span>
+                <div>
+                  <h3 className="font-bold">{cat.title}</h3>
+                  <p className="mt-1 text-sm text-foreground-muted">
+                    {cat.description}
+                  </p>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-center text-xl font-bold">
-            よくある質問
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <details
-                key={faq.q}
-                className="group rounded-2xl border border-border bg-background"
-              >
-                <summary className="flex cursor-pointer items-center justify-between p-5 text-sm font-medium">
-                  {faq.q}
-                  <span className="ml-2 text-primary transition group-open:rotate-45">
-                    ＋
-                  </span>
-                </summary>
-                <p className="px-5 pb-5 text-xs leading-relaxed text-foreground/70">
-                  {faq.a}
-                </p>
-              </details>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="border-t border-border bg-muted px-5 py-12">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-lg font-bold text-primary-dark">Bellora</p>
-          <p className="mt-1 text-xs text-foreground/50">時短美容セレクション</p>
-
-          <div className="mt-6 space-y-2 text-xs leading-relaxed text-foreground/50">
-            <p>
-              当サイトはアフィリエイトプログラムに参加しています。
-              <br />
-              掲載リンクを通じて商品を購入された場合、当サイトが報酬を受け取ることがあります。
-            </p>
-            <p>
-              掲載情報は記事公開時点のものです。最新情報は各公式サイトでご確認ください。
-              <br />
-              効果・効能を保証するものではありません。
-            </p>
-          </div>
-
-          <div className="mt-6 text-xs text-foreground/40">
-            <p>
-              お問い合わせ：
-              <a
-                href="mailto:contact@bellora.jp"
-                className="underline hover:text-primary"
+      {/* ───── Tools / Comparison ───── */}
+      <section id="tools" className="bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">
+            IT転職に役立つツール・サービス
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-center text-foreground-muted">
+            実際に使ったサービスを正直レビューしています。
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {TOOLS.map((tool) => (
+              <Link
+                key={tool.title}
+                href={tool.href}
+                className="rounded-xl border border-border bg-surface p-6 transition hover:border-primary/50 hover:shadow-sm"
               >
-                contact@bellora.jp
-              </a>
-            </p>
-            <p className="mt-2">&copy; 2025 Bellora. All rights reserved.</p>
+                <span className="text-3xl">{tool.emoji}</span>
+                <h3 className="mt-3 font-bold">{tool.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
+                  {tool.description}
+                </p>
+              </Link>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* ───── About ───── */}
+      <section id="about" className="px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">
+            このブログについて
+          </h2>
+
+          {/* Profile */}
+          <div className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary/10 text-2xl">
+                ✍️
+              </div>
+              <div>
+                <p className="font-bold">Bellora 管理人</p>
+                <p className="mt-0.5 text-sm text-foreground-muted">
+                  文系未経験 → SES → 自社サービスエンジニア
+                </p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
+              新卒で非IT企業に就職後、独学でプログラミングを学びIT業界に転職。SES企業で経験を積み、現在は自社サービス企業でエンジニアとして働いています。転職では失敗も経験しました。子育てしながら基本情報技術者試験の勉強も進行中。同じように「未経験だけどIT転職したい」と思っている方に向けて、リアルな情報を発信しています。
+            </p>
+          </div>
+
+          {/* Disclaimer & PR */}
+          <div className="mt-6 space-y-4 text-xs leading-relaxed text-foreground-muted">
+            <p>
+              <span className="font-bold text-foreground">免責事項:</span>{" "}
+              当サイトの情報は筆者個人の経験・調査に基づくものであり、正確性・最新性を保証するものではありません。転職やサービス利用に関する最終判断はご自身の責任でお願いいたします。
+            </p>
+            <p>
+              <span className="font-bold text-foreground">PR表記:</span>{" "}
+              当サイトの一部記事にはアフィリエイト広告が含まれます。紹介するサービスは筆者が実際に利用・調査したものに限定しており、広告の有無が評価に影響することはありません。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Footer ───── */}
+      <footer className="border-t border-border bg-surface px-4 py-10">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="font-bold">Bellora</p>
+          <p className="mt-1 text-sm text-foreground-muted">
+            文系未経験からIT転職を目指すリアル体験ブログ
+          </p>
+          <div className="mt-4 flex justify-center gap-6 text-sm text-foreground-muted">
+            <Link href="/posts" className="transition hover:text-foreground">
+              記事一覧
+            </Link>
+            <a href="#about" className="transition hover:text-foreground">
+              About
+            </a>
+          </div>
+          <p className="mt-6 text-xs text-foreground-muted">
+            &copy; {new Date().getFullYear()} Bellora. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
