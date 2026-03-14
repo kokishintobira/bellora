@@ -76,7 +76,7 @@ const NVIM_3_LINES = [
 const SCENES: Record<string, SceneDef> = {
   /* ── tmux Level 1 ── */
   "session-start": {
-    before: shell([SHELL_PROMPT + " tmux"]),
+    before: shell([SHELL_PROMPT]),
     after: tmux({
       session: "0", layout: "single",
       panes: [P([SHELL_PROMPT], true)],
@@ -84,7 +84,7 @@ const SCENES: Record<string, SceneDef> = {
     }),
   },
   "session-named": {
-    before: shell([SHELL_PROMPT + " tmux new -s work"]),
+    before: shell([SHELL_PROMPT]),
     after: tmux({
       session: "work", layout: "single",
       panes: [P([SHELL_PROMPT], true)],
@@ -100,16 +100,15 @@ const SCENES: Record<string, SceneDef> = {
     after: shell([SHELL_PROMPT, "[detached (from session 0)]", SHELL_PROMPT]),
   },
   "session-list": {
-    before: shell([SHELL_PROMPT + " tmux ls"]),
+    before: shell([SHELL_PROMPT]),
     after: shell([
-      SHELL_PROMPT + " tmux ls",
       "0: 1 windows (created Sun Mar 15)",
       "work: 2 windows (created Sun Mar 15)",
       SHELL_PROMPT,
     ]),
   },
   "session-attach": {
-    before: shell([SHELL_PROMPT + " tmux a"]),
+    before: shell([SHELL_PROMPT]),
     after: tmux({
       session: "0", layout: "single",
       panes: [P(TMUX_PANE, true)],
