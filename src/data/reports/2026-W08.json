@@ -1,0 +1,194 @@
+{
+  "weekSlug": "2026-W08",
+  "weekLabel": "2026年 第8週",
+  "generatedAt": "2026-02-22T10:00:00Z",
+  "totalTweetsAnalyzed": 4820,
+  "summary": "今週はChatGPTの新機能発表を受けてメンション数が急増。Claude 4.6のリリースも大きな話題となり、コーディングAI分野ではCursor AIの成長率がトップ。画像生成分野ではMidjourneyが安定した人気を維持している。",
+  "highlights": [
+    "ChatGPTが新メモリ機能を発表し、メンション数が前週比+35%",
+    "Claude 4.6リリースでAnthropicへの注目度が過去最高に",
+    "Cursor AIがコーディングカテゴリで最大の成長率を記録",
+    "Sora正式公開でAI動画生成への関心が急上昇"
+  ],
+  "rankings": [
+    {
+      "toolSlug": "chatgpt",
+      "mentionCount": 1250,
+      "growthRate": 0.35,
+      "sentimentBreakdown": { "positive": 0.62, "neutral": 0.28, "negative": 0.10 },
+      "topTweets": [
+        {
+          "id": "1893000000000000001",
+          "text": "ChatGPTの新メモリ機能すごい。過去の会話を覚えていて、文脈に合った回答をしてくれる。仕事の効率が上がった。",
+          "authorUsername": "ai_user_1",
+          "authorName": "AI活用マスター",
+          "likeCount": 2450,
+          "retweetCount": 580,
+          "createdAt": "2026-02-20T08:30:00Z"
+        },
+        {
+          "id": "1893000000000000002",
+          "text": "ChatGPT、ついにリアルタイム検索対応か。Perplexityの強みだった部分にも参入してきた。",
+          "authorUsername": "tech_watcher",
+          "authorName": "テックウォッチャー",
+          "likeCount": 1820,
+          "retweetCount": 420,
+          "createdAt": "2026-02-19T14:15:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "claude",
+      "mentionCount": 980,
+      "growthRate": 0.42,
+      "sentimentBreakdown": { "positive": 0.71, "neutral": 0.22, "negative": 0.07 },
+      "topTweets": [
+        {
+          "id": "1893000000000000003",
+          "text": "Claude 4.6、コーディング性能が飛躍的に向上。複雑なリファクタリングも一発で正確にこなす。",
+          "authorUsername": "dev_sarah",
+          "authorName": "サラ@エンジニア",
+          "likeCount": 3100,
+          "retweetCount": 890,
+          "createdAt": "2026-02-21T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "cursor",
+      "mentionCount": 720,
+      "growthRate": 0.58,
+      "sentimentBreakdown": { "positive": 0.68, "neutral": 0.25, "negative": 0.07 },
+      "topTweets": [
+        {
+          "id": "1893000000000000004",
+          "text": "Cursor AIのAgent機能、マジで開発体験変わる。タスク投げたら勝手にファイル横断で実装してくれる。",
+          "authorUsername": "indie_dev",
+          "authorName": "個人開発者タロウ",
+          "likeCount": 2100,
+          "retweetCount": 650,
+          "createdAt": "2026-02-20T16:45:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "gemini",
+      "mentionCount": 650,
+      "growthRate": 0.12,
+      "sentimentBreakdown": { "positive": 0.55, "neutral": 0.32, "negative": 0.13 },
+      "topTweets": [
+        {
+          "id": "1893000000000000005",
+          "text": "Gemini 2.5、マルチモーダル性能がかなり良くなってる。画像理解の精度が段違い。",
+          "authorUsername": "ml_researcher",
+          "authorName": "ML研究者",
+          "likeCount": 1500,
+          "retweetCount": 320,
+          "createdAt": "2026-02-18T09:20:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "midjourney",
+      "mentionCount": 580,
+      "growthRate": 0.08,
+      "sentimentBreakdown": { "positive": 0.72, "neutral": 0.20, "negative": 0.08 },
+      "topTweets": [
+        {
+          "id": "1893000000000000006",
+          "text": "Midjourneyで作ったプロダクト画像、クライアントに好評だった。もうストックフォト不要かも。",
+          "authorUsername": "designer_k",
+          "authorName": "デザイナーK",
+          "likeCount": 1800,
+          "retweetCount": 400,
+          "createdAt": "2026-02-19T11:30:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "perplexity",
+      "mentionCount": 520,
+      "growthRate": 0.18,
+      "sentimentBreakdown": { "positive": 0.65, "neutral": 0.27, "negative": 0.08 },
+      "topTweets": [
+        {
+          "id": "1893000000000000007",
+          "text": "調べ物はPerplexity一択になった。出典付きで回答してくれるから、情報の信頼性が担保される。",
+          "authorUsername": "writer_m",
+          "authorName": "ライターM",
+          "likeCount": 1200,
+          "retweetCount": 280,
+          "createdAt": "2026-02-20T13:00:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "sora",
+      "mentionCount": 480,
+      "growthRate": 0.85,
+      "sentimentBreakdown": { "positive": 0.58, "neutral": 0.30, "negative": 0.12 },
+      "topTweets": [
+        {
+          "id": "1893000000000000008",
+          "text": "Sora正式公開！生成される動画のクオリティがやばい。映像制作の民主化が本当に始まった感。",
+          "authorUsername": "creator_y",
+          "authorName": "映像クリエイターY",
+          "likeCount": 4200,
+          "retweetCount": 1500,
+          "createdAt": "2026-02-21T18:00:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "github-copilot",
+      "mentionCount": 420,
+      "growthRate": -0.05,
+      "sentimentBreakdown": { "positive": 0.52, "neutral": 0.35, "negative": 0.13 },
+      "topTweets": [
+        {
+          "id": "1893000000000000009",
+          "text": "GitHub Copilot、最近はCursorに押され気味だけど、既存のVSCode環境で使える手軽さは強い。",
+          "authorUsername": "backend_dev",
+          "authorName": "バックエンドエンジニア",
+          "likeCount": 800,
+          "retweetCount": 150,
+          "createdAt": "2026-02-17T15:30:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "runway",
+      "mentionCount": 380,
+      "growthRate": 0.22,
+      "sentimentBreakdown": { "positive": 0.60, "neutral": 0.28, "negative": 0.12 },
+      "topTweets": [
+        {
+          "id": "1893000000000000010",
+          "text": "Runway Gen-3の画像→動画変換が進化しすぎ。静止画からリアルな動きを生成できるのは本当に革命的。",
+          "authorUsername": "video_creator",
+          "authorName": "動画クリエイター",
+          "likeCount": 1600,
+          "retweetCount": 380,
+          "createdAt": "2026-02-20T20:00:00Z"
+        }
+      ]
+    },
+    {
+      "toolSlug": "elevenlabs",
+      "mentionCount": 340,
+      "growthRate": 0.15,
+      "sentimentBreakdown": { "positive": 0.66, "neutral": 0.25, "negative": 0.09 },
+      "topTweets": [
+        {
+          "id": "1893000000000000011",
+          "text": "ElevenLabsの日本語音声、自然すぎてAI生成だと気づかないレベル。ポッドキャスト制作に使い始めた。",
+          "authorUsername": "podcast_host",
+          "authorName": "ポッドキャスター",
+          "likeCount": 950,
+          "retweetCount": 220,
+          "createdAt": "2026-02-19T17:45:00Z"
+        }
+      ]
+    }
+  ]
+}

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const SITE_NAME = "Bellora";
-const SITE_TAGLINE = "文系未経験からIT転職を目指すリアル体験ブログ";
+const SITE_TAGLINE = "tmux/Neovim コマンド練習ツール Command Dojo";
 const SITE_DESCRIPTION =
-  "文系未経験からIT転職を目指す人のための、失敗込みのリアル体験ブログ。SES→自社サービス、資格勉強、子育てとの両立をリアルに発信。";
+  "tmuxとNeovimのコマンドをゲーム形式で反復練習できる無料Webアプリ「Command Dojo」。実際にキーボードでCtrl+Bなどのキーコンボを入力し、ターミナルプレビューで操作結果を視覚的に確認。レベル制で段階的に学べます。";
 const SITE_URL = "https://bellora.jp";
 
 export const metadata: Metadata = {
@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
+  keywords: [
+    "tmux", "neovim", "nvim", "vim", "コマンド練習", "キーバインド",
+    "ターミナル", "CLI", "チートシート", "想起練習", "command dojo",
+  ],
   openGraph: {
     type: "website",
     locale: "ja_JP",
@@ -29,6 +33,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 

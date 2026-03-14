@@ -1,0 +1,29 @@
+{
+  "toolSlug": "chatgpt",
+  "weeks": [
+    {
+      "weekSlug": "2026-W05",
+      "mentionCount": 780,
+      "growthRate": 0.05,
+      "sentimentBreakdown": { "positive": 0.58, "neutral": 0.30, "negative": 0.12 }
+    },
+    {
+      "weekSlug": "2026-W06",
+      "mentionCount": 850,
+      "growthRate": 0.09,
+      "sentimentBreakdown": { "positive": 0.60, "neutral": 0.28, "negative": 0.12 }
+    },
+    {
+      "weekSlug": "2026-W07",
+      "mentionCount": 926,
+      "growthRate": 0.09,
+      "sentimentBreakdown": { "positive": 0.59, "neutral": 0.29, "negative": 0.12 }
+    },
+    {
+      "weekSlug": "2026-W08",
+      "mentionCount": 1250,
+      "growthRate": 0.35,
+      "sentimentBreakdown": { "positive": 0.62, "neutral": 0.28, "negative": 0.10 }
+    }
+  ]
+}

@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# X OAuth tokens (contain secrets)
+src/data/x-tokens.json
+src/data/x-pkce.json
+
 # vercel
 .vercel
 

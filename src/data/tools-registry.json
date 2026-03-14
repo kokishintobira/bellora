@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "vendor": "OpenAI",
+    "category": "chatbot",
+    "description": "OpenAIが提供する対話型AIアシスタント。GPT-4oベースで自然言語処理、コード生成、画像分析など幅広いタスクに対応。",
+    "url": "https://chat.openai.com",
+    "affiliateSlug": "chatgpt",
+    "xSearchQueries": ["ChatGPT", "GPT-4o"]
+  },
+  {
+    "slug": "claude",
+    "name": "Claude",
+    "vendor": "Anthropic",
+    "category": "chatbot",
+    "description": "Anthropic開発の安全性重視AI。長文理解とコーディングに強く、Claude 4ファミリーで高性能を実現。",
+    "url": "https://claude.ai",
+    "affiliateSlug": "claude",
+    "xSearchQueries": ["Claude AI", "Anthropic Claude"]
+  },
+  {
+    "slug": "gemini",
+    "name": "Gemini",
+    "vendor": "Google",
+    "category": "chatbot",
+    "description": "Google DeepMindのマルチモーダルAI。テキスト・画像・音声を統合的に処理し、Google製品との連携が強み。",
+    "url": "https://gemini.google.com",
+    "affiliateSlug": "gemini",
+    "xSearchQueries": ["Gemini AI", "Google Gemini"]
+  },
+  {
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "vendor": "Midjourney",
+    "category": "image-gen",
+    "description": "高品質な画像生成AI。アート性の高いビジュアル生成で定評があり、Discordベースで利用可能。",
+    "url": "https://midjourney.com",
+    "affiliateSlug": "midjourney",
+    "xSearchQueries": ["Midjourney", "MJ AI"]
+  },
+  {
+    "slug": "stable-diffusion",
+    "name": "Stable Diffusion",
+    "vendor": "Stability AI",
+    "category": "image-gen",
+    "description": "オープンソースの画像生成モデル。ローカル実行可能でカスタマイズ性が高く、商用利用にも対応。",
+    "url": "https://stability.ai",
+    "affiliateSlug": "stable-diffusion",
+    "xSearchQueries": ["Stable Diffusion", "StableDiffusion", "SDXL"]
+  },
+  {
+    "slug": "dall-e",
+    "name": "DALL-E",
+    "vendor": "OpenAI",
+    "category": "image-gen",
+    "description": "OpenAIの画像生成AI。テキストから高解像度画像を生成し、ChatGPTに統合されている。",
+    "url": "https://openai.com/dall-e",
+    "affiliateSlug": "dall-e",
+    "xSearchQueries": ["DALL-E", "DALLE"]
+  },
+  {
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "vendor": "GitHub / Microsoft",
+    "category": "coding",
+    "description": "AIペアプログラマー。コード補完・生成・チャットでの質問に対応し、主要IDEで利用可能。",
+    "url": "https://github.com/features/copilot",
+    "affiliateSlug": "github-copilot",
+    "xSearchQueries": ["GitHub Copilot", "Copilot AI"]
+  },
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "vendor": "Anysphere",
+    "category": "coding",
+    "description": "AI搭載コードエディタ。VS Codeベースにマルチモデル対応のAI機能を統合した次世代IDE。",
+    "url": "https://cursor.com",
+    "affiliateSlug": "cursor",
+    "xSearchQueries": ["Cursor AI", "Cursor editor"]
+  },
+  {
+    "slug": "v0",
+    "name": "v0",
+    "vendor": "Vercel",
+    "category": "coding",
+    "description": "Vercelが提供するAI UIジェネレーター。プロンプトからReactコンポーネントを生成し、即座にデプロイ可能。",
+    "url": "https://v0.dev",
+    "affiliateSlug": "v0",
+    "xSearchQueries": ["v0 dev", "v0.dev"]
+  },
+  {
+    "slug": "notion-ai",
+    "name": "Notion AI",
+    "vendor": "Notion",
+    "category": "productivity",
+    "description": "Notionに組み込まれたAI機能。文書作成・要約・翻訳・ブレインストーミングをワークスペース内で完結。",
+    "url": "https://notion.so/product/ai",
+    "affiliateSlug": "notion-ai",
+    "xSearchQueries": ["Notion AI"]
+  },
+  {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "vendor": "Perplexity AI",
+    "category": "research",
+    "description": "AI検索エンジン。リアルタイムWeb検索と回答生成を統合し、出典付きで信頼性の高い情報を提供。",
+    "url": "https://perplexity.ai",
+    "affiliateSlug": "perplexity",
+    "xSearchQueries": ["Perplexity AI", "Perplexity"]
+  },
+  {
+    "slug": "suno",
+    "name": "Suno",
+    "vendor": "Suno AI",
+    "category": "audio",
+    "description": "AIによる楽曲生成。テキストプロンプトからボーカル付きのフル楽曲を生成可能。",
+    "url": "https://suno.com",
+    "affiliateSlug": "suno",
+    "xSearchQueries": ["Suno AI", "Suno music"]
+  },
+  {
+    "slug": "runway",
+    "name": "Runway",
+    "vendor": "Runway",
+    "category": "video",
+    "description": "AI動画生成・編集ツール。Gen-3で高品質な動画生成が可能。映像制作のワークフローを革新。",
+    "url": "https://runway.ml",
+    "affiliateSlug": "runway",
+    "xSearchQueries": ["Runway AI", "Runway Gen"]
+  },
+  {
+    "slug": "sora",
+    "name": "Sora",
+    "vendor": "OpenAI",
+    "category": "video",
+    "description": "OpenAIのテキスト→動画生成AI。写実的な動画をプロンプトから生成する次世代モデル。",
+    "url": "https://openai.com/sora",
+    "affiliateSlug": "sora",
+    "xSearchQueries": ["Sora AI", "OpenAI Sora"]
+  },
+  {
+    "slug": "jasper",
+    "name": "Jasper",
+    "vendor": "Jasper AI",
+    "category": "writing",
+    "description": "マーケティング向けAIライティングツール。ブランドボイスを学習し、広告・ブログ・SNS投稿を生成。",
+    "url": "https://jasper.ai",
+    "affiliateSlug": "jasper",
+    "xSearchQueries": ["Jasper AI"]
+  },
+  {
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "vendor": "ElevenLabs",
+    "category": "audio",
+    "description": "AI音声合成・クローニング。リアルな音声生成と多言語対応で、ナレーション・吹替に活用。",
+    "url": "https://elevenlabs.io",
+    "affiliateSlug": "elevenlabs",
+    "xSearchQueries": ["ElevenLabs", "ElevenLabs AI"]
+  },
+  {
+    "slug": "claude-code",
+    "name": "Claude Code",
+    "vendor": "Anthropic",
+    "category": "coding",
+    "description": "Anthropicが提供するターミナルベースのAIコーディングアシスタント。プロジェクト全体を理解して自律的にコード生成・編集。",
+    "url": "https://docs.anthropic.com/en/docs/claude-code",
+    "affiliateSlug": "claude-code",
+    "xSearchQueries": ["Claude Code", "claude-code"]
+  },
+  {
+    "slug": "grok",
+    "name": "Grok",
+    "vendor": "xAI",
+    "category": "chatbot",
+    "description": "xAIが開発するAIアシスタント。X（旧Twitter）のリアルタイムデータへのアクセスが特徴。",
+    "url": "https://grok.x.ai",
+    "affiliateSlug": "grok",
+    "xSearchQueries": ["Grok AI", "xAI Grok"]
+  }
+]

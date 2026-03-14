@@ -1,0 +1,49 @@
+[
+  {
+    "title": "セッション管理",
+    "entries": [
+      { "keys": "tmux", "description": "新しいセッション開始" },
+      { "keys": "tmux new -s name", "description": "名前付きセッション作成" },
+      { "keys": "tmux ls", "description": "セッション一覧" },
+      { "keys": "tmux a -t name", "description": "セッションにアタッチ" },
+      { "keys": "tmux kill-session -t name", "description": "セッション終了" },
+      { "keys": "Ctrl-b d", "description": "デタッチ" },
+      { "keys": "Ctrl-b $", "description": "セッション名変更" }
+    ]
+  },
+  {
+    "title": "ウィンドウ操作",
+    "entries": [
+      { "keys": "Ctrl-b c", "description": "新しいウィンドウ作成" },
+      { "keys": "Ctrl-b n", "description": "次のウィンドウ" },
+      { "keys": "Ctrl-b p", "description": "前のウィンドウ" },
+      { "keys": "Ctrl-b 0-9", "description": "ウィンドウ番号で移動" },
+      { "keys": "Ctrl-b w", "description": "ウィンドウ一覧" },
+      { "keys": "Ctrl-b ,", "description": "ウィンドウ名変更" },
+      { "keys": "Ctrl-b &", "description": "ウィンドウ削除" }
+    ]
+  },
+  {
+    "title": "ペイン操作",
+    "entries": [
+      { "keys": "Ctrl-b %", "description": "左右分割" },
+      { "keys": "Ctrl-b \"", "description": "上下分割" },
+      { "keys": "Ctrl-b o", "description": "次のペイン" },
+      { "keys": "Ctrl-b 矢印", "description": "方向指定で移動" },
+      { "keys": "Ctrl-b x", "description": "ペイン削除" },
+      { "keys": "Ctrl-b z", "description": "ペインズーム切替" },
+      { "keys": "Ctrl-b !", "description": "ペインをウィンドウに分離" },
+      { "keys": "Ctrl-b Space", "description": "レイアウト切替" }
+    ]
+  },
+  {
+    "title": "コピー&その他",
+    "entries": [
+      { "keys": "Ctrl-b [", "description": "コピーモード開始" },
+      { "keys": "Ctrl-b ]", "description": "貼り付け" },
+      { "keys": "Ctrl-b :", "description": "コマンドプロンプト" },
+      { "keys": "Ctrl-b t", "description": "時計表示" },
+      { "keys": "Ctrl-b ?", "description": "キーバインド一覧" }
+    ]
+  }
+]

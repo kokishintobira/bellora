@@ -1,0 +1,56 @@
+[
+  {
+    "title": "モード切替",
+    "entries": [
+      { "keys": "i", "description": "インサートモード (カーソル前)" },
+      { "keys": "a", "description": "インサートモード (カーソル後)" },
+      { "keys": "o", "description": "下に行挿入してインサート" },
+      { "keys": "O", "description": "上に行挿入してインサート" },
+      { "keys": "v", "description": "ビジュアルモード" },
+      { "keys": "V", "description": "行ビジュアルモード" },
+      { "keys": "Ctrl-v", "description": "ブロックビジュアルモード" },
+      { "keys": "Esc", "description": "ノーマルモードに戻る" }
+    ]
+  },
+  {
+    "title": "移動",
+    "entries": [
+      { "keys": "h j k l", "description": "左 下 上 右" },
+      { "keys": "w / b", "description": "次の単語 / 前の単語" },
+      { "keys": "0 / $", "description": "行頭 / 行末" },
+      { "keys": "gg / G", "description": "ファイル先頭 / 末尾" },
+      { "keys": "Ctrl-d / Ctrl-u", "description": "半画面下 / 上スクロール" },
+      { "keys": "{number}G", "description": "指定行へ移動" },
+      { "keys": "/ / ?", "description": "前方検索 / 後方検索" },
+      { "keys": "n / N", "description": "次の一致 / 前の一致" },
+      { "keys": "*", "description": "カーソル下の単語を検索" }
+    ]
+  },
+  {
+    "title": "編集",
+    "entries": [
+      { "keys": "dd", "description": "行削除（カット）" },
+      { "keys": "yy", "description": "行コピー（ヤンク）" },
+      { "keys": "p / P", "description": "後に貼り付け / 前に貼り付け" },
+      { "keys": "x", "description": "1文字削除" },
+      { "keys": "r{char}", "description": "1文字置換" },
+      { "keys": "cw", "description": "単語変更" },
+      { "keys": "u", "description": "アンドゥ" },
+      { "keys": "Ctrl-r", "description": "リドゥ" },
+      { "keys": ".", "description": "直前の操作を繰り返し" }
+    ]
+  },
+  {
+    "title": "コマンド&ファイル",
+    "entries": [
+      { "keys": ":w", "description": "保存" },
+      { "keys": ":q", "description": "終了" },
+      { "keys": ":wq / :x / ZZ", "description": "保存して終了" },
+      { "keys": ":q!", "description": "強制終了（変更破棄）" },
+      { "keys": ":%s/old/new/g", "description": "全置換" },
+      { "keys": ":sp / :vsp", "description": "水平 / 垂直分割" },
+      { "keys": "q{a-z}", "description": "マクロ記録開始" },
+      { "keys": "@{a-z}", "description": "マクロ再生" }
+    ]
+  }
+]
