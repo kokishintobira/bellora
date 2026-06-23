@@ -114,6 +114,12 @@ export default function Home() {
           >
             Command Dojo
           </Link>
+          <Link
+            href="/kids-game"
+            className="rounded-lg border border-border px-4 py-1.5 text-sm font-medium transition hover:border-primary/50 hover:text-primary"
+          >
+            Kids Game
+          </Link>
         </div>
       </header>
 
@@ -269,6 +275,9 @@ export default function Home() {
           <div className="mt-4 flex justify-center gap-6 text-sm text-foreground-muted">
             <Link href="/dojo" className="transition hover:text-foreground">
               Command Dojo
+            </Link>
+            <Link href="/kids-game" className="transition hover:text-foreground">
+              Kids Game
             </Link>
           </div>
           <p className="mt-6 text-xs text-foreground-muted">
