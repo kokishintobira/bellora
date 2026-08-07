@@ -7,9 +7,12 @@ bellora の `public/preview/` 配下に静的HTMLとして置いてあり、Verc
 
 | URL | 内容 |
 | --- | --- |
-| `https://bellora-vert.vercel.app/preview/tenpura-oirase` | 2案の比較ページ（PC・タブレット・スマホ表示を切替） |
-| `https://bellora-vert.vercel.app/preview/tenpura-oirase/a` | A案：高級・割烹スタイル |
-| `https://bellora-vert.vercel.app/preview/tenpura-oirase/b` | B案：地元の定食屋スタイル |
+| `https://www.bellora.jp/preview/tenpura-oirase` | 2案の比較ページ（PC・タブレット・スマホ表示を切替） |
+| `https://www.bellora.jp/preview/tenpura-oirase/a` | A案：高級・割烹スタイル |
+| `https://www.bellora.jp/preview/tenpura-oirase/b` | B案：地元の定食屋スタイル |
+
+Vercelの既定ドメイン `https://bellora-c4ad.vercel.app` でも同じパスで開ける。
+GitHubリポジトリの Website 欄にある `bellora-vert.vercel.app` は現存しないデプロイを指しており、開くと404になる（要修正）。
 
 短いURLは `next.config.ts` の `rewrites()` で実ファイルに繋いでいる。
 実ファイル直指定（`/preview/tenpura-oirase/index.html` など）でも開ける。
