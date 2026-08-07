@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="店内のイメージイラスト">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8dcc4"/><stop offset="100%" stop-color="#d3c3a5"/>
+    </linearGradient>
+    <linearGradient id="counter" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b78d5c"/><stop offset="100%" stop-color="#8a6640"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#ffd89f" stop-opacity="0.7"/><stop offset="100%" stop-color="#ffd89f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig5" cx="0.5" cy="0.45" r="0.8">
+      <stop offset="50%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#3a2a1c" stop-opacity="0.35"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#wall)"/>
+  <!-- 天井 -->
+  <rect width="800" height="120" fill="#4a3828"/>
+  <g stroke="#3a2b1f" stroke-width="6">
+    <path d="M0 40 H 800"/><path d="M0 82 H 800"/>
+  </g>
+
+  <!-- 提灯 -->
+  <g transform="translate(150 130)">
+    <circle cx="0" cy="0" r="110" fill="url(#glow)"/>
+    <rect x="-4" y="-70" width="8" height="26" fill="#33271e"/>
+    <ellipse cx="0" cy="0" rx="46" ry="52" fill="#f0d49a"/>
+    <g stroke="#d8b071" stroke-width="2" opacity="0.9">
+      <path d="M-45 -22 H 45"/><path d="M-46 -6 H 46"/><path d="M-46 10 H 46"/><path d="M-45 26 H 45"/>
+    </g>
+    <ellipse cx="0" cy="0" rx="46" ry="52" fill="none" stroke="#b8905a" stroke-width="3"/>
+    <text x="0" y="12" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="34" fill="#9a2f22">天</text>
+  </g>
+  <g transform="translate(650 130)">
+    <circle cx="0" cy="0" r="110" fill="url(#glow)"/>
+    <rect x="-4" y="-70" width="8" height="26" fill="#33271e"/>
+    <ellipse cx="0" cy="0" rx="46" ry="52" fill="#f0d49a"/>
+    <g stroke="#d8b071" stroke-width="2" opacity="0.9">
+      <path d="M-45 -22 H 45"/><path d="M-46 -6 H 46"/><path d="M-46 10 H 46"/><path d="M-45 26 H 45"/>
+    </g>
+    <ellipse cx="0" cy="0" rx="46" ry="52" fill="none" stroke="#b8905a" stroke-width="3"/>
+    <text x="0" y="12" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="34" fill="#9a2f22">丼</text>
+  </g>
+
+  <!-- 壁のお品書き短冊 -->
+  <g font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="19" fill="#3a2f24" text-anchor="middle">
+    <g transform="translate(300 200)">
+      <rect x="-26" y="-32" width="52" height="150" fill="#f6efdd" stroke="#cdbb98"/>
+      <text x="0" y="-6">天丼</text><text x="0" y="76" font-size="15" fill="#8f2f24">九〇〇</text>
+    </g>
+    <g transform="translate(370 196)">
+      <rect x="-26" y="-32" width="52" height="164" fill="#f6efdd" stroke="#cdbb98"/>
+      <text x="0" y="-6">天汁</text><text x="0" y="20">定食</text><text x="0" y="92" font-size="15" fill="#8f2f24">一〇〇〇</text>
+    </g>
+    <g transform="translate(440 204)">
+      <rect x="-26" y="-32" width="52" height="150" fill="#f6efdd" stroke="#cdbb98"/>
+      <text x="0" y="-6">かつ</text><text x="0" y="20">カレー</text><text x="0" y="84" font-size="15" fill="#8f2f24">九五〇</text>
+    </g>
+    <g transform="translate(510 200)">
+      <rect x="-26" y="-32" width="52" height="140" fill="#f6efdd" stroke="#cdbb98"/>
+      <text x="0" y="-6">そば</text><text x="0" y="72" font-size="15" fill="#8f2f24">七〇〇</text>
+    </g>
+  </g>
+
+  <!-- 小上がり（奥） -->
+  <g transform="translate(660 350)">
+    <rect x="-140" y="-40" width="280" height="120" fill="#c6ab7e"/>
+    <g stroke="#b1936a" stroke-width="3">
+      <path d="M-140 -10 H 140"/><path d="M-140 20 H 140"/><path d="M-140 50 H 140"/>
+      <path d="M-50 -40 V 80"/><path d="M40 -40 V 80"/>
+    </g>
+    <rect x="-140" y="-46" width="280" height="8" fill="#8a6b45"/>
+    <!-- 座卓 -->
+    <g transform="translate(0 26)">
+      <rect x="-84" y="-16" width="168" height="26" rx="4" fill="#6b4c30"/>
+      <rect x="-84" y="-22" width="168" height="10" rx="4" fill="#8a6440"/>
+    </g>
+  </g>
+
+  <!-- カウンター -->
+  <g transform="translate(300 470)">
+    <rect x="-320" y="-40" width="640" height="30" rx="6" fill="url(#counter)"/>
+    <rect x="-320" y="-44" width="640" height="10" rx="5" fill="#cfa671"/>
+    <rect x="-320" y="-10" width="640" height="140" fill="#7a5a3a"/>
+    <g stroke="#6a4c30" stroke-width="3" opacity="0.8">
+      <path d="M-320 24 H 320"/><path d="M-320 62 H 320"/><path d="M-320 100 H 320"/>
+    </g>
+    <!-- 椅子 -->
+    <g fill="#4c3826">
+      <g transform="translate(-220 40)"><ellipse cx="0" cy="0" rx="34" ry="12"/><rect x="-6" y="4" width="12" height="70"/></g>
+      <g transform="translate(-100 40)"><ellipse cx="0" cy="0" rx="34" ry="12"/><rect x="-6" y="4" width="12" height="70"/></g>
+      <g transform="translate(20 40)"><ellipse cx="0" cy="0" rx="34" ry="12"/><rect x="-6" y="4" width="12" height="70"/></g>
+    </g>
+    <!-- 卓上の器 -->
+    <g transform="translate(-200 -52)">
+      <ellipse cx="0" cy="0" rx="30" ry="10" fill="#3f4a52"/><ellipse cx="0" cy="-3" rx="26" ry="8" fill="#f3ece0"/>
+    </g>
+    <g transform="translate(60 -52)">
+      <ellipse cx="0" cy="0" rx="24" ry="8" fill="#7d4630"/><ellipse cx="0" cy="-2" rx="20" ry="6" fill="#8a5a30"/>
+    </g>
+    <!-- 湯呑み -->
+    <g transform="translate(-60 -56)" fill="#4b6b6a"><rect x="-11" y="-14" width="22" height="18" rx="3"/><ellipse cx="0" cy="-14" rx="11" ry="4" fill="#dff0ee"/></g>
+  </g>
+
+  <rect width="800" height="600" fill="url(#vig5)"/>
+</svg>

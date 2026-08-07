@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="天ぷら定食のイメージイラスト">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2ece0"/>
+      <stop offset="100%" stop-color="#dfd4c0"/>
+    </linearGradient>
+    <linearGradient id="k1" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#f0c98a"/><stop offset="100%" stop-color="#c99552"/>
+    </linearGradient>
+    <radialGradient id="rice" cx="0.4" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ece4d6"/>
+    </radialGradient>
+    <radialGradient id="vig2" cx="0.5" cy="0.45" r="0.78">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3a2f22" stop-opacity="0.26"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg2)"/>
+  <g opacity="0.13" stroke="#8a7355" stroke-width="1">
+    <path d="M20 120 C 240 90, 480 160, 780 110"/>
+    <path d="M20 300 C 260 270, 520 340, 780 290"/>
+    <path d="M20 480 C 260 450, 520 520, 780 470"/>
+  </g>
+
+  <!-- お盆 -->
+  <g transform="translate(400 320)">
+    <rect x="-330" y="-190" width="660" height="400" rx="18" fill="#2b2622" opacity="0.15" transform="translate(0 14)"/>
+    <rect x="-330" y="-190" width="660" height="400" rx="18" fill="#4b3a2c"/>
+    <rect x="-314" y="-176" width="628" height="372" rx="12" fill="#5d4835"/>
+    <rect x="-314" y="-176" width="628" height="372" rx="12" fill="none" stroke="#7b6247" stroke-width="3"/>
+  </g>
+
+  <!-- 天ぷら皿 -->
+  <g transform="translate(400 210)">
+    <ellipse cx="0" cy="8" rx="250" ry="82" fill="#000" opacity="0.12"/>
+    <ellipse cx="0" cy="0" rx="248" ry="80" fill="#f7f3ea"/>
+    <ellipse cx="0" cy="-4" rx="228" ry="70" fill="#fffdf8"/>
+    <ellipse cx="0" cy="0" rx="248" ry="80" fill="none" stroke="#d8cdb8" stroke-width="3"/>
+    <!-- 敷紙 -->
+    <path d="M-190 -34 L 190 -34 L 168 30 L -168 30 Z" fill="#fbf8f1" stroke="#e6dcc7"/>
+    <!-- 海老天 -->
+    <g transform="translate(-84 -14) rotate(-14)">
+      <path d="M-84 4 C -66 -22, -22 -30, 18 -22 C 54 -14, 78 -4, 88 6 C 76 22, 40 30, 0 28 C -40 26, -70 20, -84 4 Z" fill="url(#k1)"/>
+      <g fill="#e9bd80"><circle cx="-46" cy="10" r="7"/><circle cx="0" cy="16" r="8"/><circle cx="46" cy="10" r="7"/></g>
+      <path d="M88 6 L 130 -16 L 126 6 L 136 24 L 94 14 Z" fill="#e0654e"/>
+    </g>
+    <g transform="translate(56 -22) rotate(9)">
+      <path d="M-80 4 C -62 -20, -20 -28, 16 -20 C 50 -12, 72 -4, 82 6 C 70 20, 38 28, 0 26 C -38 24, -66 18, -80 4 Z" fill="url(#k1)"/>
+      <g fill="#e9bd80"><circle cx="-42" cy="10" r="7"/><circle cx="2" cy="14" r="7"/><circle cx="42" cy="8" r="6"/></g>
+      <path d="M82 6 L 122 -14 L 118 6 L 128 22 L 88 14 Z" fill="#d95a44"/>
+    </g>
+    <!-- イカ天 -->
+    <g transform="translate(-160 20) rotate(4)">
+      <rect x="-52" y="-22" width="104" height="44" rx="20" fill="#e8bf82"/>
+      <g fill="#f0cf99"><circle cx="-26" cy="-4" r="8"/><circle cx="6" cy="6" r="9"/><circle cx="32" cy="-4" r="7"/></g>
+    </g>
+    <!-- 椎茸 -->
+    <g transform="translate(140 24)">
+      <path d="M-48 6 C -44 -24, 44 -24, 48 6 C 30 18, -30 18, -48 6 Z" fill="#dfae6c"/>
+      <rect x="-20" y="6" width="40" height="18" fill="#e6bd82"/>
+    </g>
+    <!-- 大葉 -->
+    <g transform="translate(6 26) rotate(-8)">
+      <path d="M0 -34 C 34 -22, 40 12, 0 36 C -40 12, -34 -22, 0 -34 Z" fill="#7d9a58"/>
+      <path d="M-34 16 C -12 30, 18 30, 34 14 C 22 38, -24 38, -34 16 Z" fill="#e8c288"/>
+    </g>
+  </g>
+
+  <!-- ご飯茶碗 -->
+  <g transform="translate(196 430)">
+    <ellipse cx="0" cy="70" rx="96" ry="24" fill="#000" opacity="0.12"/>
+    <path d="M-96 -6 C -92 60, -60 84, 0 84 C 60 84, 92 60, 96 -6 Z" fill="#3f4a52"/>
+    <path d="M-96 -6 C -92 56, -62 78, 0 78 C 62 78, 92 56, 96 -6 Z" fill="#556570"/>
+    <ellipse cx="0" cy="-6" rx="96" ry="26" fill="#6b7d88"/>
+    <ellipse cx="0" cy="-6" rx="86" ry="21" fill="#3f4a52"/>
+    <path d="M-84 -10 C -66 -52, 66 -52, 84 -10 C 60 4, -60 4, -84 -10 Z" fill="url(#rice)"/>
+  </g>
+
+  <!-- 味噌汁 -->
+  <g transform="translate(404 452)">
+    <ellipse cx="0" cy="58" rx="82" ry="20" fill="#000" opacity="0.12"/>
+    <path d="M-82 -4 C -78 50, -50 72, 0 72 C 50 72, 78 50, 82 -4 Z" fill="#5a2f22"/>
+    <ellipse cx="0" cy="-4" rx="82" ry="22" fill="#7d4630"/>
+    <ellipse cx="0" cy="-4" rx="72" ry="18" fill="#8a5a30"/>
+    <g fill="#c79a53" opacity="0.85"><ellipse cx="-28" cy="-6" rx="12" ry="6"/><ellipse cx="16" cy="0" rx="14" ry="6"/><ellipse cx="40" cy="-10" rx="9" ry="4"/></g>
+    <g fill="#3f6b3a" opacity="0.7"><ellipse cx="-6" cy="-12" rx="10" ry="4"/></g>
+  </g>
+
+  <!-- 小鉢（ところてん） -->
+  <g transform="translate(608 440)">
+    <ellipse cx="0" cy="42" rx="66" ry="18" fill="#000" opacity="0.12"/>
+    <path d="M-66 -8 C -62 34, -40 52, 0 52 C 40 52, 62 34, 66 -8 Z" fill="#e8e2d5"/>
+    <ellipse cx="0" cy="-8" rx="66" ry="19" fill="#f6f2e9"/>
+    <ellipse cx="0" cy="-8" rx="56" ry="15" fill="#d9e3e0"/>
+    <g stroke="#b9cbc6" stroke-width="4" stroke-linecap="round">
+      <path d="M-34 -10 L 10 -14"/><path d="M-26 -2 L 26 -6"/><path d="M-8 -16 L 34 -10"/>
+    </g>
+  </g>
+
+  <!-- 天つゆ小皿 -->
+  <g transform="translate(672 300)">
+    <ellipse cx="0" cy="30" rx="56" ry="16" fill="#000" opacity="0.1"/>
+    <ellipse cx="0" cy="0" rx="56" ry="22" fill="#3a3330"/>
+    <ellipse cx="0" cy="-2" rx="44" ry="16" fill="#5b4632"/>
+    <ellipse cx="-14" cy="-4" rx="16" ry="6" fill="#e6dcc4" opacity="0.5"/>
+  </g>
+
+  <!-- 箸 -->
+  <g transform="translate(400 560) rotate(-1)">
+    <rect x="-160" y="-6" width="320" height="7" rx="3" fill="#2f251d"/>
+    <rect x="-160" y="6" width="320" height="7" rx="3" fill="#2f251d"/>
+    <rect x="120" y="-8" width="44" height="11" rx="4" fill="#a5341f"/>
+    <rect x="120" y="4" width="44" height="11" rx="4" fill="#a5341f"/>
+  </g>
+
+  <rect width="800" height="600" fill="url(#vig2)"/>
+</svg>
