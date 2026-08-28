@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { PageHeading } from "./PageHeading";
 import { StakePicker } from "./StakePicker";
 import { useKeirinSettings } from "./KeirinProvider";
-import { formatYen } from "@/lib/keirin/calculations";
+import { formatYen, STRATEGY_KEYS, STRATEGY_LABELS } from "@/lib/keirin/calculations";
 
 function Toggle({ checked, onChange, label }: { checked: boolean; onChange: () => void; label: string }) {
   return <button type="button" role="switch" aria-checked={checked} aria-label={label} className={`k-toggle ${checked ? "is-on" : ""}`} onClick={onChange} />;
 }
 
 export function SettingsView() {
-  const { baseStake, data } = useKeirinSettings();
+  const { baseStake, data, defaultStrategy, setDefaultStrategy } = useKeirinSettings();
   const [notifications, setNotifications] = useState(true);
   const [showOdds, setShowOdds] = useState(true);
   const [saved, setSaved] = useState(false);
@@ -41,6 +41,13 @@ export function SettingsView() {
           <h2>基準投資額</h2>
           <p>1買い目あたりの金額を変更すると、すべてのシミュレーション結果を同じ比率で再計算します。現在は <strong>{formatYen(baseStake)}</strong> です。</p>
           <StakePicker />
+          <div className="k-default-strategy">
+            <strong>デフォルト購入戦略</strong>
+            <span>ダッシュボード、成績履歴、今日の購入候補に適用します。</span>
+            <div className="k-strategy-options">
+              {STRATEGY_KEYS.map((key) => <button type="button" key={key} className={defaultStrategy === key ? "is-active" : ""} onClick={() => setDefaultStrategy(key)}>{STRATEGY_LABELS[key]}</button>)}
+            </div>
+          </div>
           <div style={{ marginTop: 26 }}>
             <div className="k-setting-row"><div><strong>結果確定のお知らせ</strong><span>日次結果の更新状態をダッシュボードに表示</span></div><Toggle label="結果確定のお知らせ" checked={notifications} onChange={() => setNotifications((value) => !value)} /></div>
             <div className="k-setting-row"><div><strong>予想オッズを表示</strong><span>Today画面に取得時点の参考オッズを表示</span></div><Toggle label="予想オッズを表示" checked={showOdds} onChange={() => setShowOdds((value) => !value)} /></div>

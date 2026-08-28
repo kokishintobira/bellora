@@ -287,6 +287,10 @@
 .k-setting-row { min-height: 63px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-top: 1px solid #e9ecea; }
 .k-setting-row div strong { display: block; font-size: 12px; }
 .k-setting-row div span { display: block; margin-top: 4px; color: var(--k-muted); font-size: 9px; }
+.k-default-strategy { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e9ecea; }
+.k-default-strategy > strong { display: block; font-size: 12px; }
+.k-default-strategy > span { display: block; margin-top: 5px; color: var(--k-muted); font-size: 9px; line-height: 1.6; }
+.k-default-strategy .k-strategy-options { margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); }
 .k-toggle { width: 42px; height: 24px; padding: 3px; border: 0; border-radius: 20px; background: #cbd2ce; cursor: pointer; transition: background .2s; }
 .k-toggle::before { content: ""; display: block; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.15); transition: transform .2s; }
 .k-toggle.is-on { background: var(--k-green); }

@@ -8,7 +8,7 @@ import { useKeirinSettings } from "./KeirinProvider";
 import { formatRoi, formatYen } from "@/lib/keirin/calculations";
 
 export function ExperimentsView() {
-  const { data } = useKeirinSettings();
+  const { data, defaultStrategy } = useKeirinSettings();
   const { experiments } = data;
   const [tab, setTab] = useState<"experiments" | "backtest">("experiments");
 
@@ -23,20 +23,23 @@ export function ExperimentsView() {
       <div className="k-experiment-grid">
         <section className="k-history-accordion">
           {experiments.length === 0 && <div className="k-card k-card-pad">実バックテスト結果はまだありません。</div>}
-          {experiments.map((experiment) => (
-            <article className="k-card k-experiment-card" key={experiment.id}>
-              <div className="k-experiment-title"><div><h3>{experiment.name}</h3><p>{experiment.model} ・ {experiment.version} ・ {experiment.period}</p></div><span className="k-status">{experiment.status}</span></div>
-              <div className="k-experiment-metrics">
-                <div><span>回収率</span><strong>{formatRoi(experiment.roi)}</strong></div>
-                <div><span>投資額</span><strong>{formatYen(experiment.investment)}</strong></div>
-                <div><span>回収金</span><strong>{formatYen(experiment.returnAmount)}</strong></div>
-                <div><span>収支</span><strong className={experiment.profit >= 0 ? "k-history-profit is-positive" : "k-history-profit is-negative"}>{formatYen(experiment.profit, true)}</strong></div>
-              </div>
-              {experiment.strategies.length > 0 && <StrategyComparison strategies={experiment.strategies} compact />}
-              <details className="k-feature-details"><summary>詳細設定を開く（{experiment.raceCount.toLocaleString()}レース・特徴量 {experiment.features.length}件）</summary><div className="k-feature-list">{experiment.features.map((feature) => <span key={feature}>{feature}</span>)}</div></details>
-              <CommentBox targetId={experiment.id} compact />
-            </article>
-          ))}
+          {experiments.map((experiment) => {
+            const selected = experiment.strategies.find((strategy) => strategy.key === defaultStrategy) ?? experiment;
+            return (
+              <article className="k-card k-experiment-card" key={experiment.id}>
+                <div className="k-experiment-title"><div><h3>{experiment.name}</h3><p>{experiment.model} ・ {experiment.version} ・ {experiment.period}</p></div><span className="k-status">{experiment.status}</span></div>
+                <div className="k-experiment-metrics">
+                  <div><span>選択戦略の回収率</span><strong>{formatRoi(selected.roi)}</strong></div>
+                  <div><span>投資額</span><strong>{formatYen(selected.investment)}</strong></div>
+                  <div><span>回収金</span><strong>{formatYen(selected.returnAmount)}</strong></div>
+                  <div><span>収支</span><strong className={selected.profit >= 0 ? "k-history-profit is-positive" : "k-history-profit is-negative"}>{formatYen(selected.profit, true)}</strong></div>
+                </div>
+                {experiment.strategies.length > 0 && <StrategyComparison strategies={experiment.strategies} compact selectedStrategy={defaultStrategy} />}
+                <details className="k-feature-details"><summary>詳細設定を開く（{experiment.raceCount.toLocaleString()}レース・特徴量 {experiment.features.length}件）</summary><div className="k-feature-list">{experiment.features.map((feature) => <span key={feature}>{feature}</span>)}</div></details>
+                <CommentBox targetId={experiment.id} compact />
+              </article>
+            );
+          })}
         </section>
 
         <aside className="k-card k-backtest-panel">
@@ -49,7 +52,7 @@ export function ExperimentsView() {
             <div className="k-field"><label htmlFor="bet-amount">1買い目金額</label><input id="bet-amount" type="number" min="100" step="100" defaultValue="500" /></div>
             <div className="k-field"><label htmlFor="min-ev">最低期待値</label><input id="min-ev" type="number" min="1" step="0.01" defaultValue="1.1" /></div>
             <div className="k-field is-full"><label htmlFor="confidence">最低 confidence</label><input id="confidence" type="number" min="0" max="1" step="0.05" defaultValue="0.65" /></div>
-            <div className="k-field is-full"><label htmlFor="purchase-strategy">購入戦略</label><select id="purchase-strategy" defaultValue="compare"><option value="compare">全レース / A・Bを比較</option><option value="suitability_a">AI適性 Aのみ</option><option value="suitability_ab">AI適性 A・Bのみ</option><option value="all">全対象レース</option></select></div>
+            <div className="k-field is-full"><label htmlFor="purchase-strategy">購入戦略</label><select id="purchase-strategy" defaultValue="compare"><option value="compare">全レース / Aのみ / A・Bを比較</option><option value="suitability_a">AI適性 Aのみ</option><option value="suitability_ab">AI適性 A・Bのみ</option><option value="all">全対象レース</option></select></div>
           </div>
           <button type="button" className="k-button-primary k-form-action" disabled>ローカルWorkerで実行</button>
           <div className="k-worker-note"><span />バックテストはローカルWorkerで実計算し、保存済み結果を表示します。</div>
