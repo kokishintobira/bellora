@@ -5,13 +5,13 @@ import { CommentBox } from "./CommentBox";
 import { PageHeading } from "./PageHeading";
 import { StakePicker } from "./StakePicker";
 import { useKeirinSettings } from "./KeirinProvider";
-import { todayPredictions } from "@/lib/keirin/data";
 import { formatYen, scaleMoney } from "@/lib/keirin/calculations";
 import { isEligibleForStrategy, recommendationLabel } from "@/lib/keirin/suitability";
 import type { PurchaseDecision, StrategyKey } from "@/lib/keirin/types";
 
 export function TodayView() {
-  const { baseStake } = useKeirinSettings();
+  const { baseStake, data } = useKeirinSettings();
+  const { todayPredictions } = data;
   const [strategy, setStrategy] = useState<StrategyKey>("suitability_ab");
   const [manualDecisions, setManualDecisions] = useState<Record<string, PurchaseDecision>>({});
   const totalBets = todayPredictions.reduce((count, prediction) => count + prediction.bets.length, 0);
@@ -27,7 +27,7 @@ export function TodayView() {
 
   return (
     <>
-      <PageHeading eyebrow="Today's predictions" title="今日の予想" description={`2026年8月28日（金）・ ${todayPredictions.length}レース / ${totalBets}買い目`} action={<StakePicker compact />} />
+      <PageHeading eyebrow="Today's predictions" title="今日の予想" description={`${todayPredictions[0]?.date ?? "対象日なし"}・ ${todayPredictions.length}レース / ${totalBets}買い目（実データ）`} action={<StakePicker compact />} />
       <div className="k-strategy-bar" aria-label="購入戦略">
         <div><strong>購入戦略</strong><span>過去の類似条件から購入対象を絞り込みます</span></div>
         <div className="k-strategy-options">
@@ -43,11 +43,12 @@ export function TodayView() {
         <div><span>購入候補</span><strong>{selectedPredictions.length}レース</strong></div>
         <div><span>見送り</span><strong>{todayPredictions.length - selectedPredictions.length}レース</strong></div>
         <div><span>全対象</span><strong>{todayPredictions.length}レース</strong></div>
-        <div><span>結果確定</span><strong>本日 22:30</strong></div>
+        <div><span>データ更新</span><strong>{new Date(data.generatedAt).toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" })}</strong></div>
       </section>
 
       <section className="k-content-row">
         <div className="k-race-grid">
+          {todayPredictions.length === 0 && <div className="k-card k-card-pad">当日の予測はまだありません。Worker実行後に表示されます。</div>}
           {todayPredictions.map((prediction) => {
             const investment = prediction.bets.reduce((sum, bet) => sum + scaleMoney(bet.amount, baseStake), 0);
             const recommended = prediction.bets[0];

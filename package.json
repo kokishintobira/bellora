@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test:keirin": "node --test src/lib/keirin/calculations.test.ts src/lib/keirin/suitability.test.ts",
-    "db:migrate:keirin": "node --env-file=.env.local scripts/migrate-keirin.mjs"
+    "test:keirin:worker": "PYTHONPATH=worker .venv/bin/python -m unittest worker/test_worker.py",
+    "db:migrate:keirin": "node --env-file=.env.local scripts/migrate-keirin.mjs",
+    "keirin:import:today": "node --env-file=.env.local scripts/import-keirin-worker.mjs worker/out/today.json",
+    "keirin:import:backtest": "node --env-file=.env.local scripts/import-keirin-worker.mjs worker/out/backtest.json"
   },
   "dependencies": {
     "@libsql/client": "^0.17.4",

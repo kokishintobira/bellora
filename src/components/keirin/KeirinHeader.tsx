@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FlaskIcon, HistoryIcon, HomeIcon, SettingsIcon, SparkIcon } from "./Icons";
+import { useKeirinSettings } from "./KeirinProvider";
 
 const nav = [
   { href: "/keirin", label: "ホーム", icon: HomeIcon, exact: true },
@@ -14,6 +15,8 @@ const nav = [
 
 export function KeirinHeader() {
   const pathname = usePathname();
+  const { data } = useKeirinSettings();
+  const updatedAt = new Date(data.generatedAt).toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" });
   const isActive = (href: string, exact?: boolean) => exact ? pathname === href : pathname.startsWith(href);
 
   return (
@@ -29,7 +32,7 @@ export function KeirinHeader() {
               <Link key={href} href={href} className={isActive(href, exact) ? "is-active" : ""}>{label}</Link>
             ))}
           </nav>
-          <div className="k-system-status"><span />データ更新済み <b>08:05</b></div>
+          <div className="k-system-status"><span />{data.dataMode === "real" ? "実データ" : "デモ"} <b>{updatedAt}</b></div>
         </div>
       </header>
       <nav className="k-bottom-nav" aria-label="モバイルナビゲーション">

@@ -11,7 +11,7 @@ function Toggle({ checked, onChange, label }: { checked: boolean; onChange: () =
 }
 
 export function SettingsView() {
-  const { baseStake } = useKeirinSettings();
+  const { baseStake, data } = useKeirinSettings();
   const [notifications, setNotifications] = useState(true);
   const [showOdds, setShowOdds] = useState(true);
   const [saved, setSaved] = useState(false);
@@ -52,9 +52,9 @@ export function SettingsView() {
           <h2>システム状態</h2>
           <p>データ連携と日次集計の直近ステータスです。</p>
           <div className="k-db-status">
-            <div><span>予想データ</span><b>生成済み</b></div>
-            <div><span>前日結果</span><b>照合済み</b></div>
-            <div><span>日次集計</span><b>08:05 更新</b></div>
+            <div><span>表示モード</span><b>{data.dataMode === "real" ? "実データ" : "デモ"}</b></div>
+            <div><span>予想データ</span><b>{data.todayPredictions.length}レース</b></div>
+            <div><span>確定結果</span><b>{data.dailyResults.length}日分</b></div>
             <div><span>タイムゾーン</span><strong>Asia/Tokyo</strong></div>
           </div>
           <div className="k-worker-note" style={{ marginTop: 18 }}><span />ML Workerはローカル実行です。再学習・本番バックテストを行うにはWorkerを起動してください。</div>

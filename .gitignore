@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/.venv/
+__pycache__/
+*.py[cod]
 /.pnp
 .pnp.*
 .yarn/*
@@ -47,3 +50,8 @@ src/data/x-pkce.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# keirin worker generated data / model artifacts
+/worker/data/
+/worker/models/
+/worker/out/

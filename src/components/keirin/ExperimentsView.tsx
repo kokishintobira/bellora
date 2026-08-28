@@ -4,19 +4,13 @@ import { useState } from "react";
 import { CommentBox } from "./CommentBox";
 import { PageHeading } from "./PageHeading";
 import { StrategyComparison } from "./StrategyComparison";
-import { experiments } from "@/lib/keirin/data";
+import { useKeirinSettings } from "./KeirinProvider";
 import { formatRoi, formatYen } from "@/lib/keirin/calculations";
 
 export function ExperimentsView() {
+  const { data } = useKeirinSettings();
+  const { experiments } = data;
   const [tab, setTab] = useState<"experiments" | "backtest">("experiments");
-  const [running, setRunning] = useState(false);
-  const [result, setResult] = useState(false);
-
-  function runSimulation() {
-    setRunning(true);
-    setResult(false);
-    window.setTimeout(() => { setRunning(false); setResult(true); }, 1100);
-  }
 
   return (
     <>
@@ -28,7 +22,8 @@ export function ExperimentsView() {
 
       <div className="k-experiment-grid">
         <section className="k-history-accordion">
-          {experiments.map((experiment, index) => (
+          {experiments.length === 0 && <div className="k-card k-card-pad">実バックテスト結果はまだありません。</div>}
+          {experiments.map((experiment) => (
             <article className="k-card k-experiment-card" key={experiment.id}>
               <div className="k-experiment-title"><div><h3>{experiment.name}</h3><p>{experiment.model} ・ {experiment.version} ・ {experiment.period}</p></div><span className="k-status">{experiment.status}</span></div>
               <div className="k-experiment-metrics">
@@ -37,9 +32,9 @@ export function ExperimentsView() {
                 <div><span>回収金</span><strong>{formatYen(experiment.returnAmount)}</strong></div>
                 <div><span>収支</span><strong className={experiment.profit >= 0 ? "k-history-profit is-positive" : "k-history-profit is-negative"}>{formatYen(experiment.profit, true)}</strong></div>
               </div>
-              <StrategyComparison strategies={experiment.strategies} compact />
+              {experiment.strategies.length > 0 && <StrategyComparison strategies={experiment.strategies} compact />}
               <details className="k-feature-details"><summary>詳細設定を開く（{experiment.raceCount.toLocaleString()}レース・特徴量 {experiment.features.length}件）</summary><div className="k-feature-list">{experiment.features.map((feature) => <span key={feature}>{feature}</span>)}</div></details>
-              <CommentBox targetId={experiment.id} initialComment={index === 0 ? "回収率は良いが、穴狙いのサンプル数はもう少し必要。" : ""} compact />
+              <CommentBox targetId={experiment.id} compact />
             </article>
           ))}
         </section>
@@ -56,9 +51,8 @@ export function ExperimentsView() {
             <div className="k-field is-full"><label htmlFor="confidence">最低 confidence</label><input id="confidence" type="number" min="0" max="1" step="0.05" defaultValue="0.65" /></div>
             <div className="k-field is-full"><label htmlFor="purchase-strategy">購入戦略</label><select id="purchase-strategy" defaultValue="compare"><option value="compare">全レース / A・Bを比較</option><option value="suitability_a">AI適性 Aのみ</option><option value="suitability_ab">AI適性 A・Bのみ</option><option value="all">全対象レース</option></select></div>
           </div>
-          <button type="button" className="k-button-primary k-form-action" onClick={runSimulation} disabled={running}>{running ? "分析中…" : result ? "もう一度シミュレーション" : "シミュレーション開始"}</button>
-          <div className="k-worker-note"><span />デモ環境では保存済みの検証結果を再現します。実計算にはローカルWorkerが必要です。</div>
-          {result && <div className="k-simulation-result"><span>AI適性A・Bのみ購入した場合</span><strong>115.0%</strong><div><span>投資額<b>180,000円</b></span><span>回収金<b>207,000円</b></span><span>全レースROI<b>97.0%</b></span></div></div>}
+          <button type="button" className="k-button-primary k-form-action" disabled>ローカルWorkerで実行</button>
+          <div className="k-worker-note"><span />バックテストはローカルWorkerで実計算し、保存済み結果を表示します。</div>
         </aside>
       </div>
     </>
