@@ -48,7 +48,18 @@ scripts/run-keirin-morning.sh
 scripts/run-keirin-evening.sh
 ```
 
-朝に作った予測と適性スナップショットは夜に再計算せず、公式結果だけを結合します。見送りレースも仮想投資結果としてDBへ残ります。macOSでは `launchd` などから朝夕スクリプトを呼び出せますが、Macが起動している必要があります。
+朝に作った予測と適性スナップショットは夜に再計算せず、公式結果だけを結合します。見送りレースも仮想投資結果としてDBへ残ります。
+
+macOS用の定義は `scripts/launchd/` にあります。`.env.local` の設定と手動疎通後、次のように登録します。Macが起動している必要があります。
+
+```sh
+cp scripts/launchd/com.bellora.keirin.morning.plist ~/Library/LaunchAgents/
+cp scripts/launchd/com.bellora.keirin.evening.plist ~/Library/LaunchAgents/
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.bellora.keirin.morning.plist
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.bellora.keirin.evening.plist
+```
+
+現在のリポジトリ絶対パスを定義に記載しているため、プロジェクトを移動した場合はplistも修正してください。
 
 ## 生成物
 
