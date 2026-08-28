@@ -19,6 +19,9 @@
 }
 
 .keirin-app *, .keirin-app *::before, .keirin-app *::after { box-sizing: border-box; }
+.k-data-state { max-width: 680px; margin: 80px auto; padding: 28px; border: 1px solid var(--k-line); border-radius: 15px; background: #fff; text-align: center; }
+.k-data-state strong { font-size: 18px; }
+.k-data-state p { color: var(--k-muted); }
 .keirin-app button, .keirin-app input, .keirin-app textarea, .keirin-app select { font: inherit; }
 .keirin-app button, .keirin-app a { -webkit-tap-highlight-color: transparent; }
 

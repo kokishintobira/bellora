@@ -78,3 +78,13 @@ export type Experiment = Performance & {
   features: string[];
   strategies: StrategyPerformance[];
 };
+
+export type KeirinDashboardData = {
+  dataMode: "real" | "demo";
+  generatedAt: string;
+  todayPredictions: RacePrediction[];
+  dailyResults: DailyResult[];
+  experiments: Experiment[];
+  monthPerformance: Performance;
+  allTimePerformance: Performance;
+};
