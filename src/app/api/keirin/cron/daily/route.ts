@@ -22,7 +22,11 @@ export async function GET(request: NextRequest) {
       COUNT(sr.id) AS bet_count,
       COALESCE(SUM(sr.investment), 0) AS investment,
       COALESCE(SUM(sr.return_amount), 0) AS return_amount
-      FROM races r LEFT JOIN simulation_results sr ON sr.race_id = r.id
+      FROM races r
+      LEFT JOIN predictions p ON p.race_id = r.id
+        AND p.id = (SELECT p2.id FROM predictions p2 WHERE p2.race_id = r.id
+          ORDER BY p2.created_at DESC, p2.id DESC LIMIT 1)
+      LEFT JOIN simulation_results sr ON sr.prediction_id = p.id
       WHERE r.race_date = ?`,
     args: [resultDate],
   });
@@ -47,7 +51,33 @@ export async function GET(request: NextRequest) {
       sql: `INSERT INTO simulation_strategy_results
         (id, simulation_result_id, strategy_key, decision, hypothetical_investment, hypothetical_return_amount, strategy_investment, strategy_return_amount, is_hypothetical_hit)
         SELECT 'strategy:all:' || sr.id, sr.id, 'all', 'buy', sr.investment, sr.return_amount, sr.investment, sr.return_amount, sr.is_hit
-        FROM simulation_results sr JOIN races r ON r.id = sr.race_id WHERE r.race_date = ?
+        FROM simulation_results sr JOIN races r ON r.id = sr.race_id
+        JOIN predictions p ON p.id = sr.prediction_id
+        WHERE r.race_date = ?
+        AND p.id = (SELECT p2.id FROM predictions p2 WHERE p2.race_id = r.id
+          ORDER BY p2.created_at DESC, p2.id DESC LIMIT 1)
+        ON CONFLICT(simulation_result_id, strategy_key) DO UPDATE SET
+        decision = excluded.decision, hypothetical_investment = excluded.hypothetical_investment,
+        hypothetical_return_amount = excluded.hypothetical_return_amount, strategy_investment = excluded.strategy_investment,
+        strategy_return_amount = excluded.strategy_return_amount, is_hypothetical_hit = excluded.is_hypothetical_hit,
+        updated_at = CURRENT_TIMESTAMP`,
+      args: [resultDate],
+    },
+    {
+      sql: `INSERT INTO simulation_strategy_results
+        (id, simulation_result_id, strategy_key, decision, hypothetical_investment, hypothetical_return_amount, strategy_investment, strategy_return_amount, is_hypothetical_hit)
+        SELECT 'strategy:a:' || sr.id, sr.id, 'suitability_a',
+        CASE WHEN ps.grade = 'A' AND ps.is_data_sufficient = 1 THEN 'buy' ELSE 'skip' END,
+        sr.investment, sr.return_amount,
+        CASE WHEN ps.grade = 'A' AND ps.is_data_sufficient = 1 THEN sr.investment ELSE 0 END,
+        CASE WHEN ps.grade = 'A' AND ps.is_data_sufficient = 1 THEN sr.return_amount ELSE 0 END,
+        sr.is_hit
+        FROM simulation_results sr JOIN races r ON r.id = sr.race_id
+        JOIN predictions p ON p.id = sr.prediction_id
+        LEFT JOIN prediction_suitability ps ON ps.prediction_id = sr.prediction_id
+        WHERE r.race_date = ?
+        AND p.id = (SELECT p2.id FROM predictions p2 WHERE p2.race_id = r.id
+          ORDER BY p2.created_at DESC, p2.id DESC LIMIT 1)
         ON CONFLICT(simulation_result_id, strategy_key) DO UPDATE SET
         decision = excluded.decision, hypothetical_investment = excluded.hypothetical_investment,
         hypothetical_return_amount = excluded.hypothetical_return_amount, strategy_investment = excluded.strategy_investment,
@@ -65,8 +95,11 @@ export async function GET(request: NextRequest) {
         CASE WHEN ps.grade IN ('A','B') AND ps.is_data_sufficient = 1 THEN sr.return_amount ELSE 0 END,
         sr.is_hit
         FROM simulation_results sr JOIN races r ON r.id = sr.race_id
+        JOIN predictions p ON p.id = sr.prediction_id
         LEFT JOIN prediction_suitability ps ON ps.prediction_id = sr.prediction_id
         WHERE r.race_date = ?
+        AND p.id = (SELECT p2.id FROM predictions p2 WHERE p2.race_id = r.id
+          ORDER BY p2.created_at DESC, p2.id DESC LIMIT 1)
         ON CONFLICT(simulation_result_id, strategy_key) DO UPDATE SET
         decision = excluded.decision, hypothetical_investment = excluded.hypothetical_investment,
         hypothetical_return_amount = excluded.hypothetical_return_amount, strategy_investment = excluded.strategy_investment,
@@ -85,7 +118,11 @@ export async function GET(request: NextRequest) {
       FROM simulation_strategy_results ssr
       JOIN simulation_results sr ON sr.id = ssr.simulation_result_id
       JOIN races r ON r.id = sr.race_id
-      WHERE r.race_date = ? GROUP BY ssr.strategy_key`,
+      JOIN predictions p ON p.id = sr.prediction_id
+      WHERE r.race_date = ?
+      AND p.id = (SELECT p2.id FROM predictions p2 WHERE p2.race_id = r.id
+        ORDER BY p2.created_at DESC, p2.id DESC LIMIT 1)
+      GROUP BY ssr.strategy_key`,
     args: [resultDate],
   });
 

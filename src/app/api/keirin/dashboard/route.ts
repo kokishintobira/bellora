@@ -25,7 +25,10 @@ export async function GET() {
       JOIN bets b ON b.prediction_id=p.id
       JOIN prediction_suitability ps ON ps.prediction_id=p.id
       LEFT JOIN race_metadata rm ON rm.race_id=r.id
-      WHERE r.race_date=? ORDER BY r.venue, r.race_number`,
+      WHERE r.race_date=?
+      AND p.id=(SELECT p2.id FROM predictions p2 WHERE p2.race_id=r.id
+        ORDER BY p2.created_at DESC,p2.id DESC LIMIT 1)
+      ORDER BY r.venue, r.race_number`,
     args: [latestDate],
   }) : { rows: [] };
   const todayPredictions = predictionRows.rows.map((row) => ({
@@ -50,7 +53,10 @@ export async function GET() {
         CASE WHEN ps.grade IN ('A','B') AND ps.is_data_sufficient=1 THEN 1 ELSE 0 END AS selected
         FROM races r JOIN predictions p ON p.race_id=r.id JOIN race_results rr ON rr.race_id=r.id
         JOIN simulation_results sr ON sr.prediction_id=p.id JOIN prediction_suitability ps ON ps.prediction_id=p.id
-        WHERE r.race_date=? ORDER BY r.venue,r.race_number`, args: [day.result_date] }),
+        WHERE r.race_date=?
+        AND p.id=(SELECT p2.id FROM predictions p2 WHERE p2.race_id=r.id
+          ORDER BY p2.created_at DESC,p2.id DESC LIMIT 1)
+        ORDER BY r.venue,r.race_number`, args: [day.result_date] }),
     ]);
     const strategies: StrategyPerformance[] = strategyRows.rows.map((row) => ({
       key: String(row.strategy_key) as StrategyPerformance["key"], label: strategyLabel(String(row.strategy_key)),

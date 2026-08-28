@@ -10,6 +10,14 @@ const payload = JSON.parse(await readFile(input, "utf8"));
 const stake = Number(process.env.KEIRIN_BASE_STAKE ?? 100);
 const modelId = `model:${payload.model_version}`;
 const completedDates = new Set();
+const pendingStatements = [];
+const MAX_BATCH_STATEMENTS = 100;
+
+async function flushStatements() {
+  if (!pendingStatements.length) return;
+  const statements = pendingStatements.splice(0, pendingStatements.length);
+  await db.batch(statements, "write");
+}
 
 await db.execute({
   sql: `INSERT INTO models (id, name, version, description) VALUES (?, 'LightGBM two-stage classifier', ?, ?)
@@ -29,7 +37,7 @@ const races = payload.races ?? [];
 for (const race of races) {
   const raceId = race.race_key;
   const predictionId = `prediction:${raceId}:${payload.model_version}`;
-  await db.batch([
+  const raceStatements = [
     { sql: `INSERT INTO races (id, race_date, venue, race_number, status) VALUES (?, ?, ?, ?, ?)
         ON CONFLICT(id) DO UPDATE SET venue=excluded.venue, status=excluded.status, updated_at=CURRENT_TIMESTAMP`,
       args: [raceId, race.race_date, race.venue, race.race_number, race.actual_first ? "confirmed" : "scheduled"] },
@@ -62,13 +70,13 @@ for (const race of races) {
           fieldSize: race.field_size, grade: race.grade,
         }), payload.suitability_data_cutoff_at ?? payload.model_data_cutoff_at ?? payload.data_cutoff_at,
         race.prediction_created_at ?? payload.generated_at] },
-  ], "write");
+  ];
 
   if (race.actual_first) {
     completedDates.add(race.race_date);
     const hit = race.predicted_first === race.actual_first && race.predicted_second === race.actual_second;
     const returned = hit ? Number(race.payout_2t ?? 0) * (stake / 100) : 0;
-    await db.batch([
+    raceStatements.push(
       { sql: `INSERT INTO race_results (id, race_id, first_number, second_number, payout) VALUES (?, ?, ?, ?, ?)
           ON CONFLICT(race_id) DO UPDATE SET first_number=excluded.first_number, second_number=excluded.second_number, payout=excluded.payout`,
         args: [`result:${raceId}`, raceId, race.actual_first, race.actual_second, race.payout_2t] },
@@ -77,14 +85,23 @@ for (const race of races) {
           profit=excluded.profit, roi=excluded.roi, is_hit=excluded.is_hit`,
         args: [`simulation:${predictionId}`, raceId, predictionId, stake, returned, returned - stake,
           returned / stake * 100, hit ? 1 : 0] },
-    ], "write");
+    );
   }
+
+  if (pendingStatements.length + raceStatements.length > MAX_BATCH_STATEMENTS) {
+    await flushStatements();
+  }
+  pendingStatements.push(...raceStatements);
 }
+
+await flushStatements();
 
 for (const resultDate of completedDates) {
   const aggregate = await db.execute({ sql: `SELECT COUNT(*) AS race_count, COALESCE(SUM(sr.investment),0) AS investment,
       COALESCE(SUM(sr.return_amount),0) AS return_amount FROM races r
-      JOIN simulation_results sr ON sr.race_id=r.id WHERE r.race_date=?`, args: [resultDate] });
+      JOIN simulation_results sr ON sr.race_id=r.id
+      JOIN predictions p ON p.id=sr.prediction_id
+      WHERE r.race_date=? AND p.model_id=?`, args: [resultDate, modelId] });
   const total = aggregate.rows[0];
   const investment = Number(total.investment), returnAmount = Number(total.return_amount);
   await db.execute({ sql: `INSERT INTO daily_results
@@ -103,7 +120,9 @@ for (const resultDate of completedDates) {
         COALESCE(SUM(CASE WHEN ${selection} THEN sr.investment ELSE 0 END),0) AS investment,
         COALESCE(SUM(CASE WHEN ${selection} THEN sr.return_amount ELSE 0 END),0) AS return_amount
         FROM races r JOIN simulation_results sr ON sr.race_id=r.id
-        JOIN prediction_suitability ps ON ps.prediction_id=sr.prediction_id WHERE r.race_date=?`, args: [resultDate] });
+        JOIN predictions p ON p.id=sr.prediction_id
+        JOIN prediction_suitability ps ON ps.prediction_id=sr.prediction_id
+        WHERE r.race_date=? AND p.model_id=?`, args: [resultDate, modelId] });
     const row = strategy.rows[0], strategyInvestment = Number(row.investment), strategyReturn = Number(row.return_amount);
     await db.execute({ sql: `INSERT INTO daily_strategy_results
         (id,result_date,strategy_key,purchase_race_count,skipped_race_count,investment,return_amount,profit,roi)
