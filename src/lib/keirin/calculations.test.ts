@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
   aggregateDailyResults,
+  aggregateStrategyResults,
   calculatePerformance,
+  dailyResultForStrategy,
   scalePerformance,
 } from "./calculations.ts";
 
@@ -33,5 +35,21 @@ describe("競輪シミュレーション計算", () => {
       { id: "b", date: "2026-08-28", raceCount: 1, betCount: 1, strategies: [], races: [], ...calculatePerformance(500, 0) },
     ]);
     assert.deepEqual(result, calculatePerformance(1000, 800));
+  });
+
+  it("Aのみ・A/B・全購入を日次横断で集計する", () => {
+    const result = {
+      id: "a", date: "2026-08-27", raceCount: 4, betCount: 4, races: [],
+      ...calculatePerformance(400, 300),
+      strategies: [
+        { key: "all" as const, label: "全対象レース", purchaseRaceCount: 4, skippedRaceCount: 0, ...calculatePerformance(400, 300) },
+        { key: "suitability_a" as const, label: "AI適性 A", purchaseRaceCount: 1, skippedRaceCount: 3, ...calculatePerformance(100, 200) },
+        { key: "suitability_ab" as const, label: "AI適性 A・B", purchaseRaceCount: 2, skippedRaceCount: 2, ...calculatePerformance(200, 250) },
+      ],
+    };
+    assert.equal(aggregateStrategyResults([result], "suitability_a").roi, 200);
+    assert.equal(aggregateStrategyResults([result], "suitability_ab").roi, 125);
+    assert.equal(aggregateStrategyResults([result], "all").roi, 75);
+    assert.equal(dailyResultForStrategy(result, "suitability_a").betCount, 1);
   });
 });

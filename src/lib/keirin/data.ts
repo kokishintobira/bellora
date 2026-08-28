@@ -20,6 +20,7 @@ const strategies = (
   selectedRaces: number,
 ): StrategyPerformance[] => [
   { key: "all", label: "全対象レース", purchaseRaceCount: totalRaces, skippedRaceCount: 0, ...calculatePerformance(allInvestment, allReturn) },
+  { key: "suitability_a", label: "AI適性 A", purchaseRaceCount: Math.round(selectedRaces * .6), skippedRaceCount: totalRaces - Math.round(selectedRaces * .6), ...calculatePerformance(Math.round(selectedInvestment * .6), Math.round(selectedReturn * .7)) },
   { key: "suitability_ab", label: "AI適性 A・B", purchaseRaceCount: selectedRaces, skippedRaceCount: totalRaces - selectedRaces, ...calculatePerformance(selectedInvestment, selectedReturn) },
 ];
 

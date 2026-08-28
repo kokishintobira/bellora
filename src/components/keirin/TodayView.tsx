@@ -10,9 +10,9 @@ import { isEligibleForStrategy, recommendationLabel } from "@/lib/keirin/suitabi
 import type { PurchaseDecision, StrategyKey } from "@/lib/keirin/types";
 
 export function TodayView() {
-  const { baseStake, data } = useKeirinSettings();
+  const { baseStake, data, defaultStrategy, setDefaultStrategy } = useKeirinSettings();
   const { todayPredictions } = data;
-  const [strategy, setStrategy] = useState<StrategyKey>("suitability_ab");
+  const strategy = defaultStrategy;
   const [manualDecisions, setManualDecisions] = useState<Record<string, PurchaseDecision>>({});
   const totalBets = todayPredictions.reduce((count, prediction) => count + prediction.bets.length, 0);
   const isSelected = (id: string, grade: "A" | "B" | "C" | "D", sufficient: boolean) =>
@@ -21,7 +21,7 @@ export function TodayView() {
   const totalInvestment = selectedPredictions.reduce((sum, prediction) => sum + prediction.bets.reduce((betSum, bet) => betSum + scaleMoney(bet.amount, baseStake), 0), 0);
 
   function changeStrategy(value: StrategyKey) {
-    setStrategy(value);
+    setDefaultStrategy(value);
     setManualDecisions({});
   }
 
