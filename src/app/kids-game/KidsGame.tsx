@@ -32,17 +32,63 @@ type Effect = {
 
 const colors = ["#fffdfa", "#fff3a6", "#b8f2d5", "#ffd1dc", "#d8f7ff", "#ffe1a8"];
 
+const hiraganaDecoys = ["あ", "か", "き", "く", "け", "こ", "さ", "し", "す", "そ", "た", "ち"];
+const alphabetDecoys = ["B", "C", "D", "F", "G", "H", "J", "K", "M", "N", "R", "Y"];
+const katakanaDecoys = ["ア", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス", "ソ", "タ", "チ"];
+
 const wordRounds: Round[] = [
-  { target: "らいおん", letters: ["ら", "い", "お", "ん"], decoys: ["く", "ま", "ね", "こ", "と", "り", "は", "な", "そ", "ゆ"] },
-  { target: "ごはん", letters: ["ご", "は", "ん"], decoys: ["み", "ず", "ぱ", "に", "く", "さ", "か", "も", "こ", "え"] },
-  { target: "APPLE", letters: ["A", "P", "P", "L", "E"], decoys: ["B", "C", "D", "F", "G", "M", "O", "S", "T", "Y"] },
+  ...[
+    "りんご",
+    "ばなな",
+    "みかん",
+    "ごはん",
+    "みず",
+    "くるま",
+    "ねこ",
+    "いぬ",
+    "せんせい",
+    "おいしゃさん",
+  ].map((target) => ({ target, letters: [...target], decoys: hiraganaDecoys })),
+  ...[
+    "APPLE",
+    "BANANA",
+    "ORANGE",
+    "WATER",
+    "MILK",
+    "CAR",
+    "CAT",
+    "DOG",
+    "TEACHER",
+    "DOCTOR",
+  ].map((target) => ({ target, letters: [...target], decoys: alphabetDecoys })),
+  ...[
+    "リンゴ",
+    "バナナ",
+    "オレンジ",
+    "ミルク",
+    "パン",
+    "クルマ",
+    "ネコ",
+    "イヌ",
+    "センセイ",
+    "ドクター",
+  ].map((target) => ({ target, letters: [...target], decoys: katakanaDecoys })),
 ];
 
-const numberRound: Round = {
-  target: "1 から 10",
-  letters: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-  decoys: ["0", "11", "12", "13", "14", "15"],
-};
+function makeNumberRound(): Round {
+  const numbers = Array.from({ length: 100 }, (_, index) => String(index + 1));
+  const selected = shuffle(numbers)
+    .slice(0, 10)
+    .sort((left, right) => Number(left) - Number(right));
+  const selectedSet = new Set(selected);
+  const decoys = shuffle(numbers.filter((number) => !selectedSet.has(number))).slice(0, 12);
+
+  return {
+    target: "1から100",
+    letters: selected,
+    decoys,
+  };
+}
 
 function shuffle<T>(items: T[]) {
   return [...items].sort(() => Math.random() - 0.5);
@@ -108,7 +154,10 @@ export function KidsGame() {
   const audioRef = useRef<AudioContext | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const round = mode === "word" ? wordRounds[roundIndex % wordRounds.length] : numberRound;
+  const round = useMemo(
+    () => (mode === "word" ? wordRounds[roundIndex % wordRounds.length] : makeNumberRound()),
+    [mode, roundIndex]
+  );
   const tokens = useMemo(
     () => makeTokens(round, `${mode}-${roundIndex}`),
     [mode, roundIndex, round]
@@ -206,6 +255,8 @@ export function KidsGame() {
   }
 
   const finished = found === round.letters.length;
+  const targetLabel = mode === "number" ? "ちいさいじゅんに さがそう" : "さがすことば";
+  const targetText = mode === "number" ? (finished ? "できた！" : `つぎは ${round.letters[found]}`) : round.target;
 
   return (
     <div className={styles.page}>
@@ -233,8 +284,8 @@ export function KidsGame() {
 
         <section className={styles.statusPanel} aria-live="polite">
           <div className={styles.targetCard}>
-            <span className={styles.targetLabel}>さがすもの</span>
-            <strong className={styles.targetText}>{round.target}</strong>
+            <span className={styles.targetLabel}>{targetLabel}</span>
+            <strong className={styles.targetText}>{targetText}</strong>
           </div>
           <div className={styles.progressCard}>
             <span className={styles.progressText}>
@@ -267,6 +318,7 @@ export function KidsGame() {
                   key={token.id}
                   className={[
                     styles.token,
+                    mode === "number" ? styles.tokenNumber : "",
                     foundIds.includes(token.id) ? styles.tokenFound : "",
                     missId === token.id ? styles.tokenMiss : "",
                   ].join(" ")}
