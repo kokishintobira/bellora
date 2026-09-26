@@ -194,6 +194,10 @@
   touch-action: manipulation;
 }
 
+.tokenNumber {
+  font-size: clamp(1.35rem, 4vw, 2.5rem);
+}
+
 .token:active {
   transform: translate(-50%, -50%) rotate(var(--twist)) scale(0.92);
 }
